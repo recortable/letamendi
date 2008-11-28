@@ -19,21 +19,21 @@ pelis <%= name %>:
 <h2>los alquileres
 </h2>
 <div class="rent_list" id="rent_list_opened">
-<%= render_partial_collection 'rent', @report[:opened] if @report[:opened] %>
+<%= render(:partial => 'rent', :collection => @report[:opened]) if @report[:opened] %>
 </div>
 
 <h2>las devoluciones
 </h2>
 <div class="rent_list" id="rent_list_closed">
-<%= render_partial_collection 'rent', @report[:closed] if @report[:closed]  %>
+<%= render(:partial => 'rent', :collection => @report[:closed]) if @report[:closed]  %>
 </div>
 
 <h2>los alquileres que deben volver <%= name %></h2>
 <div class="rent_list" id="rent_list_waiting">
-<%= render_partial_collection 'rent', @report[:waiting] if @report[:waiting]  %>
+<%= render(:partial => 'rent', :collection => @report[:waiting]) if @report[:waiting]  %>
 </div>
 
 <h2>alquileres con retraso</h2>
 <div class="rent_list" id="rent_list_delayed">
-<%= render_partial_collection 'rent', @report[:delayed] if @report[:delayed]  %>
+<%= render( :partial => 'rent', :collection => @report[:delayed]) if @report[:delayed]  %>
 </div>

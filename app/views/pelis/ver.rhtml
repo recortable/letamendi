@@ -27,7 +27,7 @@
     <%= @rent.member.name %>
   </h2>
   <div class="rent_list" id="rent_list_<%= @rent.state %>">
-    <%= render_partial '/alquileres/rent', @rent %>
+    <%= render :partial => '/alquileres/rent', :locals => {:rent => @rent} %>
   </div>
 
 <% else %>
