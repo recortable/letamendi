@@ -8,13 +8,13 @@
 </div>
 	<label>&nbsp;</label>
 <div id="form" style="display: none">
-<%= start_form_tag :action => 'create' %>
+<% form_tag :action => 'create' do -%>
 	n&uacute;mero de socio: <%= @number %>
 	<label>&nbsp;</label>
-	<%= render_partial 'form' %>
+	<%= render :partial => 'form' %>
 	<br/>
 	<%= submit_tag "pescar!" %>
-<%= end_form_tag %>
+<% end -%>
 </div>
 </div>
 
@@ -22,12 +22,10 @@
 <h2>tod@s l@s soci@s ordenadas por n&uacute;mero
 </h2>
 
-<%= link_to image_tag('menos.gif'), { :page => @member_pages.current.previous } if @member_pages.current.previous %>
-p&aacute;gina <%= @member_pages.current.number %>
-<%= link_to image_tag('mas.gif'), { :page => @member_pages.current.next } if @member_pages.current.next %> 
+<%= will_paginate @members %>
 <br/>
 
 <div id="members_list" class="list">
-  <%= render_partial_collection 'member', @members %>
+  <%= render :partial => 'member', :collection => @members %>
 </div>
 <br/>

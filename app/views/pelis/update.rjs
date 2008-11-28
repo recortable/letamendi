@@ -3,4 +3,4 @@ page.replace_html 'info_panel', :partial => 'info',
   :locals => {:movie => @movie}
 page.replace_html 'title', @movie.title
 page.replace_html 'number', @movie.number
-page.call 'discard_edit_info()'
+page.call 'discard_edit_info'

@@ -10,8 +10,7 @@ class SociosController < ApplicationController
     last = Member.find(:first, :order => 'number DESC')
     @number = last.number + 1
     @member = Member.new(:number => @number) if !@member
-    @member_pages, @members = paginate :members, :per_page => 10, 
-      :order => 'number DESC'
+    @members = Member.paginate :page => params[:page], :order => 'number DESC'
   end
 
 
@@ -66,10 +65,10 @@ class SociosController < ApplicationController
     else      
       childs = 0
       childs = RentItem.count(:conditions => 
-        ['rent_id = ?', @rent.id]) if !@rent.new_record?
+          ['rent_id = ?', @rent.id]) if !@rent.new_record?
       if childs == 1
         @rent.update_attribute(:end_date, @rent.end_date + 1.day)
-       @date_changed = true
+        @date_changed = true
       end
       @item = RentItem.new(:rent => @rent, :movie=> @movie, 
         :closed => false, :price => 2.5);
@@ -85,40 +84,40 @@ class SociosController < ApplicationController
         ['rent_id = ?', item.rent.id])
     if childs == 2
       @rent = item.rent
-        @rent.update_attribute(:end_date, item.rent.end_date - 1.day)
-       @date_changed = true
+      @rent.update_attribute(:end_date, item.rent.end_date - 1.day)
+      @date_changed = true
     end
     RentItem.delete(@id);
   end
   
-    def day_more
-      change_end_date 'un d&iacute;a m&aacute;s', 1
-    end
+  def day_more
+    change_end_date 'un d&iacute;a m&aacute;s', 1
+  end
         
-    def day_less
-      change_end_date 'un d&iacute;a menos', -1
-    end
+  def day_less
+    change_end_date 'un d&iacute;a menos', -1
+  end
 
-    def change_end_date(msg, number)
-      @msg = msg
-      @rent = Rent.find(params[:id])
-      @rent.update_attribute(:end_date, 
-        @rent.end_date + number.day)
-      render :action => 'update_dates'
-    end
+  def change_end_date(msg, number)
+    @msg = msg
+    @rent = Rent.find(params[:id])
+    @rent.update_attribute(:end_date,
+      @rent.end_date + number.day)
+    render :action => 'update_dates'
+  end
   
-    def prorrogue
-      prorrogue_rent 'un d&iacute;a m&aacute;s', 1
-    end
-    def undo_prorrogue
-      prorrogue_rent 'a darse prisa!', -1
-    end
+  def prorrogue
+    prorrogue_rent 'un d&iacute;a m&aacute;s', 1
+  end
+  def undo_prorrogue
+    prorrogue_rent 'a darse prisa!', -1
+  end
     
-    def prorrogue_rent(msg, num)
-      @msg = msg
-      @rent = Rent.find(params[:id])
-      @rent.update_attribute(:prorrogue, 
-        @rent.prorrogue + num)
-      render :action => 'update_dates'
-    end
+  def prorrogue_rent(msg, num)
+    @msg = msg
+    @rent = Rent.find(params[:id])
+    @rent.update_attribute(:prorrogue,
+      @rent.prorrogue + num)
+    render :action => 'update_dates'
+  end
 end
