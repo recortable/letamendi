@@ -2,10 +2,6 @@
 class GabineteController < ApplicationController
     layout 'cinemascope'
     
-    def index
-      render :action => 'welcome'
-    end
-    
     def search 
       @term = params[:id]
       @members = Member.search(@term, :only => 'name')

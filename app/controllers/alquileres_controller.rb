@@ -7,33 +7,7 @@ class AlquileresController < ApplicationController
     render :action => 'lista'
   end
 
-  def lista
-    ms = params[:id].to_i
-    now = Time.at(ms) if ms > 0
-    now = Time.now if ms == 0
-    @report = build_report(now)
-  end
-
-  def build_report(time) 
-    @today = Time.utc(time.year, time.month, time.day)    
-    report = Hash.new
-    report[:day] = @today
-    report[:next_day] = @today + 1.day
-    report[:prev_day] = @today - 1.day
-    report[:distance] = distance(Time.now, report[:day])
-    report[:opened] = Rent.find_all_begins_on @today
-    report[:closed] = Rent.find_all_closed_on @today
-    report[:waiting] = Rent.find_all_ends_on @today
-    report[:delayed] = Rent.find_all_delayed_on @today
-    report[:rented] = Rent.find_all_rented_on @today
-    report[:rents] = report[:rented].size
-    today_items = report[:rented].map {|r| RentItem.count(
-        :conditions => ['rent_id = ?', r.id])}
-    total = 0;
-    today_items.each {|n| total += n}
-    report[:items] = total
-    report
-  end    
+ 
   
   def close_rent
     @rent = Rent.find(params[:id]);
@@ -93,5 +67,34 @@ class AlquileresController < ApplicationController
     @rent.update_attribute(:prorrogue, 
       @rent.prorrogue + num)
     render :action => 'update_item'
+  end
+
+  private
+  def lista
+    ms = params[:id].to_i
+    now = Time.at(ms) if ms > 0
+    now = Time.now if ms == 0
+    @report = Report.new(now)
+  end
+
+  def build_report(time)
+    @today = Time.utc(time.year, time.month, time.day)
+    report = Hash.new
+    report[:day] = @today
+    report[:next_day] = @today + 1.day
+    report[:prev_day] = @today - 1.day
+    report[:distance] = distance(Time.now, report[:day])
+    report[:opened] = Rent.find_all_begins_on @today
+    report[:closed] = Rent.find_all_closed_on @today
+    report[:waiting] = Rent.find_all_ends_on @today
+    report[:delayed] = Rent.find_all_delayed_on @today
+    report[:rented] = Rent.find_all_rented_on @today
+    report[:rents] = report[:rented].size
+    today_items = report[:rented].map {|r| RentItem.count(
+        :conditions => ['rent_id = ?', r.id])}
+    total = 0;
+    today_items.each {|n| total += n}
+    report[:items] = total
+    report
   end
 end
