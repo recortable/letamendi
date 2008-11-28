@@ -1,0 +1,5 @@
+page.show_info @msg if @msg
+page.replace_html 'rent_dates', 
+  :partial => 'rent_action_dates', 
+  :locals => {:rent => @rent}
+page.call 'focus', 'movie_number' 

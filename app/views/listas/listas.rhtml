@@ -1,0 +1,14 @@
+<h1>
+<%= @item.name %>
+</h1>
+<div class="action" id="list_action">
+<div id="header">a&ntilde;adir un elemento</div>
+<%= form_remote_tag :url => {:action => 'add', :id => @item} %>
+<%= text_area_tag 'text' %>
+<%= submit_tag 'ponla!' %>
+<%= end_form_tag %>
+</div>
+
+<div id="list">
+<%= render_partial_collection 'item', @item.childs %>
+</div>

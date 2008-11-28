@@ -1,0 +1,57 @@
+<h1>
+<%= link_to image_tag('prev.png'), {:action => 'ver', :id => (@movie.number - 1)} %>
+<%= link_to image_tag('next.png'), {:action => 'ver', :id => (@movie.number + 1)} %>
+<span id="number">(<%= @movie.number %>) </span>
+<span id="title"><%= @movie.title %></span>
+</h1>
+
+<div class="action" id="info_panel">
+<%= render_partial 'info', :movie => @movie %>
+</div>
+
+<div class="action" id="create_action" style="display: none">
+<%= form_remote_tag :url => {:controller => 'pelis',
+  :action => 'update', :id => @movie} %>
+    <%= render_partial 'form' %>
+    <br/>
+	<%= submit_tag "cambiar!" %>
+    <%= link_to_function 'qu&eacute; va! lo dejo como estaba', 
+      'discard_edit_info()' %>
+
+<%= end_form_tag %>
+</div>
+
+
+<% if !@rent.nil? %>
+<h2>esta peli est&aacute; alquilada por 
+[<%= @rent.member.number %>] 
+<%= @rent.member.name %>
+</h2>
+<div class="rent_list" id="rent_list_<%= @rent.state %>">
+<%= render_partial '/alquileres/rent', @rent %>
+</div>
+
+<% else %>
+
+<div id="rent_movie_action" class="action">
+<%= form_tag :action => 'rented_by', :id => @movie.number %>
+alquilar esta peli por socio n&uacute;mero: 
+<%= text_field_tag 'member_number' %>
+<%= end_form_tag %>
+</div>
+
+<% end %>
+
+
+<h2>otras u otros que alquilaron esta peli</h2>
+<% if @closed_rents %>
+<% @display_movies = false %>
+<% @display_actions = false %>
+<div class="rent_list" id="rent_list_closed">
+<%= render_partial_collection '/alquileres/rent', @closed_rents %>
+</div>
+
+<% else %>
+<div class="rent_list" id="rent_list_closed">
+</div>
+<% end %>

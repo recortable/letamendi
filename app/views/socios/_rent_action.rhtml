@@ -1,0 +1,42 @@
+<div id="rent_action" class="action">
+
+<% if rent.nil? %>
+
+<div id="header">no ha alquilado ninguna peli hoy
+<% if !member.comments.nil? && member.comments != '' %>
+<br/>(<%= member.comments %>)
+<% end %>
+</div>
+<div id="rent_dates">
+</div>
+<div id="items_list">
+</div>
+
+<% else %>
+
+<div id="header">hoy ya tiene alquiladas:
+<% if !member.comments.nil? && member.comments != '' %>
+<br/>(<%= member.comments %>)
+<% end %>
+</div>
+<div id="rent_dates">
+<%= render_partial 'rent_action_dates', :rent=> rent %>
+</div>
+<div id="items_list">
+<%= render_partial_collection 'rent_item', rent.items %>
+</div>
+
+<% end %>
+
+
+<%= form_remote_tag :url => {:controller => 'socios',
+  :action => 'rent', :id => member.number} %>
+[<%= member.number %>]<%= member.name %>, quiere alquilar la peli: 
+<%= text_field_tag 'movie_number' %>
+<%= end_form_tag %>
+
+</div>
+
+<script>
+focus("movie_number");
+</script>

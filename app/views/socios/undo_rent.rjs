@@ -1,0 +1,12 @@
+
+if @date_changed
+page.replace_html 'rent_dates', 
+  :partial => 'rent_action_dates', 
+  :locals => {:rent => @rent}
+end
+
+page.show_info 'peli borrada!'
+page.visual_effect :drop_out, "item_#{@id}", :duration => 1
+# TODO not DRY
+page.call 'focus', 'movie_number' 
+# TODO si era el último item, cambiar el header

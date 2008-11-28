@@ -1,0 +1,111 @@
+ 
+
+
+#content .action {
+    display: block;
+    border: 3px solid #FFCC99;
+    margin: 5px 0;
+    background-color: #FFFFCE;
+    padding: 3px 10px 3px 10px;
+    width: 496px;
+}
+
+
+
+
+#content .action #header {
+    display: block;
+    font-size: 2em;
+    padding: 3px;
+    color: black;
+}
+
+#content .action #header a {
+  color: black;
+  text-decoration: none;
+}
+
+#content .action #header a:hover {
+    text-decoration: underline;
+}
+
+#content #rent_action #rent_dates {
+    display: block;
+    font-size: 1em;
+    padding: 3px;
+    margin: 3px 0;
+    color: gray;
+}
+
+#content #rent_action #items_list {
+    padding: 2px;
+}
+
+#content #rent_action #items_list .item {
+    display: block;
+    height: 1em;
+    padding: 5px;
+}
+
+#content #rent_action #items_list .item label {
+    display: block;
+    float: left;
+    width: 250px;
+    font-size: 1em;
+    overflow: hidden;
+    height: 1.3em;
+}
+
+#content #rent_action #error {
+    display: block;
+    color: red;
+    font-size: 1.3em;
+    padding: 2px;
+    margin: 2px 10px;
+}
+
+#content .action form {
+    display: block;
+    margin: 0px;
+    padding: 10px;
+    font-size: 1.4em;
+}
+
+#content .action input[type='text'] {
+    border: 1px solid lightgray;
+    margin: 1px;
+    padding: 2px;
+    font-size: 1em;
+    width: 5em;
+}
+
+#content #rent_action a {
+  text-decoration: none;
+  font-size: 0.8em;
+}
+
+#content #create_action input[type='text'] {
+    border: 0;
+    padding: 2px;
+    font-size: 0.8em;
+    width: 482px;
+    margin-bottom: 5px;
+}
+
+#content #create_action label {
+  display: block;
+  width: 100px;
+  font-size: 0.7em;
+  margin-bottom: 1px;
+}
+
+
+#content #list_action textarea {
+  border: 1px solid lightgrey;
+  width: 480px;
+  margin-bottom: 3px;   
+}
+
+#content #rename input[type=text] {
+  width: 450px;
+}

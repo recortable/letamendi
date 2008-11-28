@@ -1,0 +1,59 @@
+#search {
+  display: block;
+  float: right;
+  width: 260px;
+  margin: 5px;
+}
+
+#search .caption {
+  display: block;
+  font-weight: bolder;
+  font-size: 1.1em;
+  background-color: #FFFFCE;
+  padding: 0 4px;
+  color: black;
+  text-decoration: none;
+  margin-bottom: 2px;
+}
+
+#search .panel {
+  margin-bottom: 20px;
+}
+
+#search .panel .item {
+  display: block;
+  margin: 5px 0;
+  padding: 1px;
+  border-bottom: 1px solid lightgrey;
+  border-left: 5px solid lightgrey;
+}
+
+#search .panel .number {
+  display: block;
+  float: left;
+  width: 50px;
+}
+
+#search .panel a {
+  font-weight: bolder;
+  color: black;
+  text-decoration: none;
+}
+
+#search .item .title a {
+  display: block;
+  margin-left: 51px;
+}
+
+#search .panel a:hover {
+  text-decoration: underline;
+} 
+
+#search .panel label {
+  display: block;
+  font-size: 0.8em;
+  color: gray;
+  margin-left: 10px;
+  font-weight: normal;
+  background-color: white;
+}

@@ -1,0 +1,55 @@
+<html>
+  <head>
+    <title>El gabinete del doctor letamendi</title>
+    <%= stylesheet_link_tag 'cinemascope' %>
+    <%= stylesheet_link_tag 'cinema_rent_list' %>
+    <%= stylesheet_link_tag 'cinema_actions' %>
+    <%= stylesheet_link_tag 'search' %>
+    <%= stylesheet_link_tag 'listas' %>
+    <%= javascript_include_tag :defaults %>
+  </head>
+  <body>
+
+    <div id="top">
+      <div class="section">
+        <div id="carnet">
+          <%= link_to image_tag('carnet.png'), :controller => 'socios' %>
+        </div>
+        <label>alquilar:</label>
+        <% form_tag :controller=> 'gabinete', :action => 'find_member' do -%>
+          <%= text_field_tag 'member' %>
+        <% end -%>
+      </div>
+
+      <div class="section">
+        <div id="dvd">
+          <%= link_to image_tag('dvd.png'), :controller => 'pelis' %>
+        </div>
+        <label>devolver:</label>
+        <% form_tag :controller=> 'gabinete', :action => 'find_movie'  do -%>
+          <%= text_field_tag 'movie' %>
+        <% end  %>
+      </div>
+
+      <%= link_to image_tag('alquileres.png'),
+        :controller=> 'alquileres' %>
+
+      <div id="info">
+      </div>
+
+      <div id="search_form">
+        buscar:
+        <% form_remote_tag :url => {:controller=> 'gabinete', :action => 'search'} do %>
+          <%= text_field_tag 'id' %>
+        <% end -%>
+      </div>
+
+    </div>
+
+    <div id="content">
+      <%= render :partial => '/layouts/search' %>
+      <%= @content_for_layout %>
+    </div>
+
+  </body>
+</html>

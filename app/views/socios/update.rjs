@@ -1,0 +1,5 @@
+page.show_info(@msg) if @msg
+page.replace_html 'info_panel', :partial => 'info', 
+  :locals => {:member => @member}
+page.replace_html 'name', @member.name
+page.call 'discard_edit_info()'

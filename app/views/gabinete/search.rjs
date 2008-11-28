@@ -1,0 +1,27 @@
+
+page.replace_html 'members_search_label', 
+  "socios que tienen el texto '#{@term}'..."
+
+if @members.size > 0
+  page.replace_html 'members_search', 
+    :partial => 'members_search', :locals => 
+    {:members => @members}
+else
+  page.replace_html 'members_search',
+    "<div>no hay socios con '#{@term}'</div>"
+end
+page.visual_effect :slide_down, 'members_search', :duration => 0.5
+
+page.replace_html 'movies_search_label', 
+  "pelis que tienen el texto '#{@term}'..."
+  
+if @movies.size > 0
+  page.replace_html 'movies_search', 
+    :partial => 'movies_search', :locals => 
+    {:movies => @movies}
+else
+  page.replace_html 'movies_search',
+    "<div>no hay pelis con '#{@term}'</div>"
+end
+page.visual_effect :slide_down, 'movies_search', :duration => 0.5
+  

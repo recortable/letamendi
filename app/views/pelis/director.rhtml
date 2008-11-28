@@ -1,0 +1,8 @@
+<h1>todas las pelis dirigidas por <%= @director %>
+</h1>
+
+ten&eacute;is <%= @movies.size %> pelis de este director
+<div id="movies_list" class="list">
+  <%= render_partial_collection 'movie', @movies %>
+</div>
+<br/>

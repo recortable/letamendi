@@ -1,0 +1,5 @@
+
+page.visual_effect :blind_up, "rent_#{@rent.id}", :duration => 1
+page.insert_html :top, 'rent_list_closed', 
+  :partial => 'rent', :rent => @rent
+page.visual_effect :highlight, "rent_#{@rent.id}", :duration => 2

@@ -1,0 +1,20 @@
+page.show_info("#{@member.name} ha alquilado '#{@movie.title}'")
+if @rent.new_record?
+  @rent.save
+  page.replace_html 'header', 'ya tiene alquiladas:'
+end
+
+if @date_changed
+page.replace_html 'rent_dates', 
+  :partial => 'rent_action_dates', 
+  :locals => {:rent => @rent}
+end
+
+@hidden = true
+page.replace_html 'rent_dates', :partial => 'rent_action_dates',
+  :locals => {:rent => @rent}
+page.insert_html :top, 'items_list', :partial => 'rent_item', 
+  :locals => {:rent_item => @item, :hidden => true};
+page.visual_effect :appear, "item_#{@item.id}", :duration => 0.5
+
+page.call 'focus', 'movie_number'        

@@ -1,0 +1,7 @@
+page.show_info @msg if @msg
+@display_div = false;
+page.replace_html "rent_#{@rent.id}", :partial => 'rent', 
+  :rent => @rent,
+  :queue => {:position => 'end', :scope => 'item'}
+page.visual_effect :highlight, "rent_#{@rent.id}", 
+  :duration => 2

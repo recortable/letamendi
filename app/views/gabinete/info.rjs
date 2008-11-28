@@ -1,0 +1,4 @@
+page.replace_html 'info', @info
+page.visual_effect :appear, 'info', :duration => 0.5
+page.visual_effect :fade, 'info', :duration => 3.5, :queue => 'end'
+page.call 'focus', 'movie_number' 

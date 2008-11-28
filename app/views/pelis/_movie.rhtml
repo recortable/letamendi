@@ -1,0 +1,12 @@
+<div id="movie_<%= movie.id %>" class="list_item">
+<span class="number"><%= movie.number %></span>
+<span class="title">
+<%= link_to movie.title, :controller => 'pelis', 
+  :action => 'ver', :id => movie.number %></span>
+<span class="genre">
+<%= link_to movie.genre, :controller => 'pelis', 
+  :action => 'genero', :id => movie.genre %></span>
+<span class="director">
+<%= link_to movie.director, :controller => 'pelis', 
+  :action => 'director', :id => movie.director %></span>
+</div>

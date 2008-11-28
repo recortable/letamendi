@@ -1,0 +1,17 @@
+
+<% for movie in movies %>
+<div class="item">
+<span class="number">
+(<%= movie.number %>)
+</span>
+<span class="title">
+<%= link_to_movie movie %>
+</span>
+<label class="info">
+director: <%= link_to_director movie.director %>
+</label>
+<label class="info">
+g&eacute;nero: <%= link_to_genre movie.genre %>
+</label>
+</div>
+<% end %>

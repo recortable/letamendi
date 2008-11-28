@@ -1,0 +1,106 @@
+
+#rent_list_opened .rent {
+  border-left: 10px solid #8B00CF;
+}
+
+#rent_list_closed .rent {
+  border-left: 10px solid #66CC33;
+}
+#rent_list_waiting .rent {
+  border-left: 10px solid #FFCC66;
+}
+
+#rent_list_delayed .rent {
+  border-left: 10px solid #9F0000;
+}
+
+#rent_list_undefined .rent {
+  border-left: 10px solid white;
+}
+
+
+
+
+.rent_list .rent {
+	display: block;
+	width: 488px;
+	padding: 2px 10px;
+	margin: 2px;
+  border-bottom: 1px solid lightgrey;
+  margin-bottom: 5px;
+}
+.rent_list .button {
+  display: block;
+  text-decoration: none;
+  font-size: 0.8em;
+}
+
+.rent_list div .info {
+    color: gray;
+    font-size: 0.8em;
+}
+
+.rent .member {
+    display: block;
+    font-size: 1.1em;
+    border-bottom: 0px solid #DFBCB5;
+    height: 1.3em;
+}
+
+.rent .member .id {
+  display: block;
+  float: left;
+  width: 40px;
+  overflow: clip;
+}
+
+.rent .member .name a {
+  display: block;
+  float: left;
+  width: 295px;
+  overflow: hidden;
+  font-weight: bold;
+  text-decoration: none;
+  color: black;
+  height: 1.2em;
+}
+
+.rent .member a:hover {
+  text-decoration: underline;
+}
+
+
+.rent .movie {
+    display: block;
+    overflow: hidden;
+    font-size: 0.9em;
+    height: 1.4em;
+    margin: 0 30px;
+    width: 472px;
+    border-bottom: 0px solid #EFD6D1;
+}
+
+.rent .movie .id {
+    display: block;
+    float: left;
+    width: 50px;
+    height: 1em;
+}
+.rent .movie .title {
+    display: block;
+    float: left;
+    width: 250px;
+    text-decoration: none;
+    color: black;
+}
+
+
+
+.rent .movie label {
+    display: block;
+    float: left;
+    width: 270px;
+    height: 1em;
+}
+
+    

@@ -1,0 +1,4 @@
+page.insert_html :top, 'list', :partial => 'item', 
+  :locals => {:item => @child}
+page.visual_effect :blind_puff, "list_item_#{@child.id}", :duration => 1
+  

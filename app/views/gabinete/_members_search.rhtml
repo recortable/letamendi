@@ -1,0 +1,13 @@
+
+<% for member in members %>
+<div class="item">
+<span class="number">
+(<%= member.number %>)
+</span>
+<%= link_to member.name, :controller => 'socios', 
+  :action => 'ver', :id => member.number %>
+<label class="info">
+colegas: <%= member.friends %>
+</label>
+</div>
+<% end %>

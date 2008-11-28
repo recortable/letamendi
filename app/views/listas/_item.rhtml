@@ -1,0 +1,12 @@
+<div class="list_item" id="list_item_<%= item.id %>"
+<% if @hidden %>  
+  style="display: none" >
+<% end %>
+
+<%= link_to item.name, :id => item %>
+<% for child in item.childs %>
+<span class="child">
+<%= child.name %><br/>
+</span>
+<% end %>
+</div>

@@ -1,0 +1,25 @@
+<%= error_messages_for 'rent' %>
+
+<!--[form:rent]-->
+<p><label for="rent_closed">Closed</label><br/>
+<select id="rent_closed" name="rent[closed]"><option value="false">False</option><option value="true">True</option></select></p>
+
+<p><label for="rent_begin_date">Begin date</label><br/>
+<%= datetime_select 'rent', 'begin_date'  %></p>
+
+<p><label for="rent_end_date">End date</label><br/>
+<%= datetime_select 'rent', 'end_date'  %></p>
+
+<p><label for="rent_close_date">Close date</label><br/>
+<%= datetime_select 'rent', 'close_date'  %></p>
+
+<p><label for="rent_price">Price</label><br/>
+<%= text_field 'rent', 'price'  %></p>
+
+<p><label for="rent_extra">Extra</label><br/>
+<%= text_field 'rent', 'extra'  %></p>
+
+<p><label for="rent_prorrogue">Prorrogue</label><br/>
+<%= text_field 'rent', 'prorrogue'  %></p>
+<!--[eoform:rent]-->
+

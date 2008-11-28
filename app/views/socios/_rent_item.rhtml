@@ -1,0 +1,10 @@
+<div id="item_<%= rent_item.id%>" 
+  class="item" <% if @hidden %>style="display: none" <% end %>>
+<label>
+(<%= rent_item.movie.number %>) 
+<%= rent_item.movie.title %> 
+</label>
+<%= link_to_remote image_tag('eliminar.png'), 
+ :url => {:controller => 'socios', 
+ :action => 'undo_rent', :id => rent_item.id} %>
+</div>

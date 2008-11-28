@@ -1,0 +1,15 @@
+page.show_info @msg if @msg
+
+@display_show = false
+page.visual_effect :blind_up, "rent_#{@rent.id}", 
+  :duration => 1,
+  :queue => {:position => 'end', :scope => 'rent'}
+page.insert_html :top, "rent_list_#{@rent.state}", 
+  :partial => 'rent', :rent => @rent
+page.visual_effect :blind_down, "rent_#{@rent.id}", 
+  :duration => 1,
+  :queue => {:position => 'end', :scope => 'rent'}
+page.visual_effect :highlight, "rent_#{@rent.id}", 
+  :duration => 1,
+  :queue => {:position => 'end', :scope => 'rent'}
+  

@@ -1,0 +1,8 @@
+<div id="member_<%= member.id %>">
+<span class="number"><%= member.number %></span>
+<span class="name">
+<%= link_to member.name, :controller => 'socios',
+  :action => 'ver', :id => member.number %></span>
+<span class="friends"><%= member.friends %></span>
+<span class="telephone"><%= member.telephone %></span>
+</div>

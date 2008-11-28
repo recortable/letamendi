@@ -1,0 +1,14 @@
+
+<div id="methods">
+[ 
+<%= link_to_function 'editar', 'edit_info()' %>
+ |
+<%= link_to 'borrar', {:action => 'delete', :id => movie}, 
+  :confirm => 'estas a punto de BORRAR esta peli' %>
+ ]
+</div>
+t&iacute;tulo: <%= movie.title %><br/>
+director: <%= link_to_director movie.director %><br/>
+g&eacute;nero: <%= link_to_genre movie.genre %><br/>
+int&eacute;rpretes: <%= movie.crew %><br/>
+a&ntilde;o: <%= movie.year %><br/>

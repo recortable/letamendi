@@ -1,0 +1,3 @@
+module GabineteHelper
+
+end

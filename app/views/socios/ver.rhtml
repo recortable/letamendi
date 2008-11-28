@@ -1,0 +1,45 @@
+<h1>
+<%= link_to image_tag('prev.png'), :action => 'ver', :id => @member.number - 1 %>
+<%= link_to image_tag('next.png'), :action => 'ver', :id => @member.number + 1 %>
+[<%= @member.number %>] 
+<span id="name"><%= @member.name %></span>
+</h1>
+
+<div class="action" id="info_panel">
+<%= render_partial 'info', :member => @member %>
+</div>
+
+<div class="action" id="create_action" style="display: none">
+<%= form_remote_tag :url => {:controller => 'socios',
+  :action => 'update', :id => @member} %>
+    <%= render_partial 'form' %>
+    <br/>
+	<%= submit_tag "cambiar!" %>
+    <%= link_to_function 'qu&eacute; va! lo dejo como estaba', 
+      'discard_edit_info()' %>
+
+<%= end_form_tag %>
+</div>
+
+<%= render_partial 'rent_action', :member => @member, :rent => @rent %>
+
+<h2>
+alquileres sin devolver
+</h2>
+<div class="rent_list" id="rent_list_waiting">
+<%= render_partial_collection '/alquileres/rent', @waiting_rents %>
+</div>
+<div class="rent_list" id="rent_list_delayed">
+<% rents = @member.find_all_rents_delayed_on Time.now %>
+<%= render_partial_collection '/alquileres/rent', rents %>
+</div>
+
+<h2>otras pelis que ha ido alquilando</h2>
+<div class="rent_list" id="rent_list_closed">
+<% @display_name = false %>
+<% @display_actions = false %>
+<% @display_prorrogue = false %>
+<% rents = @member.find_all_rents_closed %>
+<%= render_partial_collection '/alquileres/rent', rents %>
+</div>
+

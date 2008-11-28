@@ -1,0 +1,26 @@
+la ha alquilado 
+<%= dias(distancia Time.now, rent.begin_date) %> 
+(<%= fecha rent.begin_date %>)
+<br/>
+la deber&iacute;a devolver 
+<%= dias(distancia Time.now, rent.end_date) %> 
+(<%= fecha rent.end_date %>) 
+
+<%= link_to_remote image_tag('menos.gif'), 
+  :url => {:action => 'day_less', :id => rent} %>
+ | 
+<%= link_to_remote image_tag('mas.gif'), 
+  :url => {:action => 'day_more', :id => rent} %>
+
+  <br/>
+
+ha llamado aplazar la entrega 
+<%= rent.prorrogue %> d&iacute;as 
+<% if rent.prorrogue > 0 %>
+<%= link_to_remote image_tag('menos.gif'), 
+  :url => {:action => 'undo_prorrogue', :id => rent} %>
+ | 
+<% end %>
+
+<%= link_to_remote image_tag('mas.gif'), 
+  :url => {:action => 'prorrogue', :id => rent} %>
