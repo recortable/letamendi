@@ -1,0 +1,21 @@
+defaults: &defaults
+  adapter: mysql
+  encoding: utf8
+  username: root
+  password: 
+  socket: /var/run/mysqld/mysqld.sock
+
+development:
+  database: letamendi
+  <<: *defaults
+
+production:
+  database: letamendi
+  <<: *defaults
+
+
+test:
+  adapter: sqlite3
+  database: db/test.sqlite3
+  timeout: 5000
+
