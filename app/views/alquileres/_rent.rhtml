@@ -1,86 +1,1 @@
-<% @display_actions = true if @display_actions.nil? %>
-<% @display_name = true if @display_name.nil? %>
-<% @display_movies = true if @display_movies.nil? %>
-<% @display_div = true if @display_div.nil? %>
-<% @display_prorrogue = true if @display_prorrogue.nil? %>
-<% @display_show = true if @display_show.nil? %>
-<!-- <%= rent.id %> -->
-<% if @display_div %>
-<div class="rent" id="rent_<%= rent.id %>"
-<%= 'style="display: none"' if !@display_show %>
->
-<% end %>
-
-<div class="info">
-de <%= dias(distancia(Time.now, rent.begin_date)) %>
-<%= fecha_y_hora rent.begin_date %> a
-<%= fecha rent.end_date %> 
-<% if !rent.closed? %>
-(hasta <%= dias(distancia(Time.now, rent.end_date)) %>) 
-<% end %><br/>
-
-<% if @display_prorrogue %>
-<span id="prorrogue" 
-style="<%= 'font-weight: bolder; color: #CE0000;' if (rent.prorrogue > 0) %>">
-ha llamado para decir que la trae 
-<%= rent.prorrogue %>
- días más tarde
-[ 
-<% if rent.prorrogue > 0 %>
-<%= link_to_remote image_tag('menos.gif'), 
-  :url => {:controller => 'alquileres', 
-    :action => 'undo_prorrogue', :id => rent}, 
-  :class => 'button' %>
- | 
-<% end %>
-<%= link_to_remote image_tag('mas.gif'), 
-  :url => {:controller => 'alquileres', 
-    :action => 'prorrogue', :id => rent}, 
-  :class => 'button' %>
- ]
-</span>
-<% end %>
-
-
-</div>
-
-<% if @display_name && !rent.member.nil? %>
-<div class="member">
-<label class="id">[<%= rent.member.number %>]</label>
-<span class="name">
-<%= link_to rent.member.name, :controller => 'socios',
-  :action => 'ver', :id => rent.member.number %>
-</span>
-<%= link_to_remote image_tag('devolver_todas.png'), 
-  :url => {:controller => 'alquileres', 
-    :action => 'close_rent', :id => rent}, 
-    :class => 'button' unless rent.closed? || !@display_actions %>
-<%= link_to_remote image_tag('alquiladas_todas.png'), 
-  :url => {:controller => 'alquileres', 
-    :action => 'undo_close_rent', :id => rent}, 
-    :class => 'button' if rent.closed? && @display_actions %>
-</div>
-<% else %>
-socio desconocido para este alquiler?!<br/>
-pedirle cuentas a dani (rent id: <%= rent.id %>)<br/>
-<% end %>
-
-<% if @display_movies %>
-<% for item in rent.items %>
-<div class="movie" id="item_<%= item.id%>" >
-<span class="id">(<%= item.movie.number %>)</span>
-<%= link_to item.movie.title, {:controller => 'pelis', 
-  :action => 'ver', :id => item.movie.number}, :class => 'title' %>
-<%= link_to_remote image_tag('devolver.png', :alt => 'devolver'), 
-    :url => {:controller => 'alquileres', :action => 'close_item', :id => item}, 
-    :class => 'button' unless item.closed? || !@display_actions %>
-<%= link_to_remote image_tag('alquilada.png', :alt => 'mequivocao, alquilarla'), 
-    :url => {:controller => 'alquileres', :action => 'undo_close_item', :id => item}, 
-    :class => 'button' if item.closed? && @display_actions %>
-</div>
-<% end %>
-<% end %>
-
-<% if @display_div %>
-</div>
-<% end %>
+<% @display_name = true if @display_name.nil? %><% @display_movies = true if @display_movies.nil? %><% @display_div = true if @display_div.nil? %><% @display_prorrogue = true if @display_prorrogue.nil? %><% @display_show = true if @display_show.nil? %><% @display_actions = true if @display_actions.nil? %><!-- <%= rent.id %> --><% if @display_div %>  <div class="rent" id="rent_<%= rent.id %>" <%= 'style="display: none"' if !@display_show %>>  <% end %>  <div class="info">    de <%= dias(distancia(Time.now, rent.begin_date)) %>    <%= fecha_y_hora rent.begin_date %> a    <%= fecha rent.end_date %>    <% if !rent.closed? %>      (hasta <%= dias(distancia(Time.now, rent.end_date)) %>)    <% end %><br/>    <% if @display_prorrogue %>      <span id="prorrogue"            style="<%= 'font-weight: bolder; color: #CE0000;' if (rent.prorrogue > 0) %>">        ha llamado para decir que la trae        <%= rent.prorrogue %>        días más tarde        [        <% if rent.prorrogue > 0 %>          <%= link_to_remote image_tag('menos.gif'),            :url => {:controller => 'alquileres',            :action => 'undo_prorrogue', :id => rent},            :class => 'button' %>          |        <% end %>        <%= link_to_remote image_tag('mas.gif'),          :url => {:controller => 'alquileres',          :action => 'prorrogue', :id => rent},          :class => 'button' %>        ]      </span>    <% end %>  </div>  <% if @display_name && !rent.member.nil? %>    <div class="member">      <label class="id">[<%= rent.member.number %>]</label>      <span class="name">        <%= link_to rent.member.name, :controller => 'socios',          :action => 'ver', :id => rent.member.number %>      </span>      <%= link_to_remote image_tag('devolver_todas.png'),        :url => {:controller => 'alquileres',        :action => 'close_rent', :id => rent},        :class => 'button' unless rent.closed? || !@display_actions %>      <%= link_to_remote image_tag('alquiladas_todas.png'),        :url => {:controller => 'alquileres',        :action => 'undo_close_rent', :id => rent},        :class => 'button' if rent.closed? && @display_actions %>    </div>  <% else %>    socio desconocido para este alquiler?!<br/>    pedirle cuentas a dani (rent id: <%= rent.id %>)<br/>  <% end %>  <% if @display_movies %>    <% for item in rent.items %>      <div class="movie" id="item_<%= item.id%>" >        <% if !item.movie.nil? %>          <span class="id">(<%= item.movie.number %>)</span>          <%= link_to item.movie.title, {:controller => 'pelis',            :action => 'ver', :id => item.movie.number}, :class => 'title' %>        <% else -%>        <%= item.movie_id %>        <% end -%>        <%= link_to_remote image_tag('devolver.png', :alt => 'devolver'),          :url => {:controller => 'alquileres', :action => 'close_item', :id => item},          :class => 'button' unless item.closed? || !@display_actions %>        <%= link_to_remote image_tag('alquilada.png', :alt => 'mequivocao, alquilarla'),          :url => {:controller => 'alquileres', :action => 'undo_close_item', :id => item},          :class => 'button' if item.closed? && @display_actions %>      </div>    <% end %>  <% end %>  <% if @display_div %>  </div><% end %>

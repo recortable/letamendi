@@ -1,0 +1,18 @@
+
+<table>
+  <thead>
+    <tr><td>Número</td><td>Nombre</td><td>Amigos</td><td>Teléfono</td><td></td></tr>
+  </thead>
+  <tbody>
+    <% for member in members -%>
+      <tr class="<%= cycle('par', 'impar') %>">
+        <td><%= member.number %></td>
+        <td><%= link_to member.name, :controller => 'socios',
+  :action => 'ver', :id => member.number %></td>
+        <td><%= member.friends %></td>
+        <td><%= member.telephone %></td>
+        <td></td>
+      </tr>
+    <% end -%>
+  </tbody>
+</table>

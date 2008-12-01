@@ -7,7 +7,13 @@ class AlquileresController < ApplicationController
     render :action => 'lista'
   end
 
- 
+  def lista
+    ms = params[:id].to_i
+    now = Time.at(ms) if ms > 0
+    now = Time.now if ms == 0
+    @report = Report.new(now)
+  end
+
   
   def close_rent
     @rent = Rent.find(params[:id]);
@@ -70,12 +76,6 @@ class AlquileresController < ApplicationController
   end
 
   private
-  def lista
-    ms = params[:id].to_i
-    now = Time.at(ms) if ms > 0
-    now = Time.now if ms == 0
-    @report = Report.new(now)
-  end
 
   def build_report(time)
     @today = Time.utc(time.year, time.month, time.day)

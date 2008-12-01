@@ -1,28 +1,24 @@
 <h1>Las pelis...</h1>
 
 <div class="action" id="create_action">
-<div id="header">
-<%= link_to_function 'una peli nueva', 
-  "Effect.toggle($('form'), 'slide');"
-%>
-</div>
-	<label>&nbsp;</label>
-<div id="form" style="display: none">
-<% form_tag :action => 'create'  do -%>
-	<label>&nbsp;</label>
-	<%= render :partial => 'form' %>
-	<br/>
-	<%= submit_tag "pescar!" %>
-<% end -%>
-</div>
+  <div id="header">
+    <%= link_to_function 'añadir una peli nueva',
+      "Effect.toggle($('form'), 'slide');"
+  %>
+  </div>
+  <label>&nbsp;</label>
+  <div id="form" style="display: none">
+    <% form_tag :action => 'create'  do -%>
+      <label>&nbsp;</label>
+      <%= render :partial => 'form' %>
+      <br/>
+      <%= submit_tag "añadir" %>
+    <% end -%>
+  </div>
 </div>
 
 <h2>todas las pelis ordenadas por n&uacute;mero
 </h2>
 
 <%= will_paginate @movies %>
-
-<div id="movies_list" class="list">
-  <%= render :partial => 'movie', :collection => @movies%>
-</div>
-<br/>
+<%= render :partial => 'movies', :locals=> { :movies => @movies } %>

@@ -1,16 +1,10 @@
-<h1>todas las pelis del g&eacute;nero <%= @genre %>
-</h1>
-
-<div class="action" id="rename">
-<%= form_tag :controller => 'pelis',
-  :action => 'rename_genre', :id => @genre %>
-cambiar el g&eacute;nero de todas estas pelis a:<br/>
-<%= text_field_tag 'genre_renamed' %>
-<%= end_form_tag %>
-</div>
-
+<h1>todas las pelis del g&eacute;nero <%= @genre %></h1>
 ten&eacute;is <%= @movies.size %> pelis de este g&eacute;nero
-<div id="movies_list" class="list">
-  <%= render_partial_collection 'movie', @movies %>
-</div>
-<br/>
+
+<% form_tag :controller => 'pelis', :action => 'rename_genre', :id => @genre do -%>
+  cambiar el g&eacute;nero de todas estas pelis a: <%= text_field_tag 'genre_renamed', @genre %>
+<%= submit_tag 'cambiar' %>
+<% end -%>
+
+
+<%= render :partial => 'movies', :locals => {:movies => @movies} %>

@@ -36,13 +36,12 @@ class PelisController < ApplicationController
   end
   
   def rename_genre
-    genero
-    @name = params[:genre_renamed]
-    @movies.each do |movie|
-      movie.update_attribute(:genre, @name)
+    movies = Movie.find_all_by_genre(params[:id])
+    name = params[:genre_renamed]
+    movies.each do |movie|
+      movie.update_attribute(:genre, name)
     end
-    @genre = @name
-    render :action => 'genero'
+    redirect_to :action => 'genero', :id => name
   end
 
   def rented_by
