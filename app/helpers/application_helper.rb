@@ -50,7 +50,7 @@ module ApplicationHelper
   end
 
   def link_to_member(member)
-    link_to member.name, :controller => 'socios', :action => 'ver', :id => member
+    link_to member.name, :controller => 'socios', :action => 'ver', :id => member unless member.nil?
   end
   
   def link_to_movie(movie) 

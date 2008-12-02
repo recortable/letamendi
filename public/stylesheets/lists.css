@@ -3,11 +3,15 @@ table {  width: 520px; border: 0; margin: 0 0 3em 0;}
 thead tr {font-size: 110%; font-weight: bold; border-bottom: 1px solid black;}
 
 
-/*tr.impar { background-color: #efefef; border: 0; }*/
+tr.impar { background-color: #efefef; }
 tr {border-top: 1px solid white; border-bottom: 1px solid gray;}
 
-td { border: 0; padding: 2px; }
-
+td { border: 0; padding: 2px 5px; }
+td.group {padding-top: 1em; font-weight: bold; font-family: serif; font-size: 120%;}
 td a {  color: black; text-decoration: none; font-size: 90%; }
 tr a:hover {text-decoration: underline;}
-td.closed_item {background-color: #66CC33; border-bottom: 1px solid white;}
+td.item {width: 0.1em;  }
+td.closed {background-color: #66CC33; }
+td.opened_today {background-color: #8B00CF;}
+td.waiting {background-color: #FDFF00;}
+td.delayed {background-color: #9F0000;}

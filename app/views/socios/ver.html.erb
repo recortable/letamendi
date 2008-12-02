@@ -5,11 +5,12 @@
   <span id="name"><%= @member.name %></span>
 </h1>
 
-<div class="action" id="info_panel">
+<div  id="info_panel">
   <%= render :partial => 'info', :locals => { :member => @member} %>
 </div>
 
 <div class="action" id="create_action" style="display: none">
+  <h2>Datos</h2>
   <% form_remote_tag :url => {:controller => 'socios', :action => 'update', :id => @member}  do -%>
     <%= render :partial => 'form' %>
     <br/>
@@ -32,13 +33,13 @@
   <%= render :partial=> '/alquileres/rent', :collection => rents %>
 </div>
 
-<h2>otras pelis que ha ido alquilando</h2>
+<h2>Pelis alquiladas con anterioridad</h2>
 <table>
   <tbody>
   <% for rent in @member.closed_rents -%>
     <% for item in rent.items %>
     <tr class="<%= cycle 'par', 'impar' %>">
-      <td class="closed_item">&nbsp;</td>
+      <td class="item closed">&nbsp;</td>
       <td><%= fecha rent.begin_date %></td>
       <td><%=  link_to_movie item.movie %></td>
     </tr>

@@ -1,24 +1,16 @@
 
+h1, h2, h3 {font-family: serif; font-weight: lighter; line-height: 0.8em; margin-top: 1em; margin-bottom: 0.3em;}
+
 h1 {
-    font-family: serif;
-    font-weight: lighter;
-    font-size: 4em;
+    font-size: 400%;
     margin: 2em 0 1em 0;
 }
 
 h2 {
-    display: block;
-    width: 520px;
-    font-family: serif;
-    font-size: 2em;
-    line-height: 0.9em;
-    margin: 3em 0 1em 0;
+    font-size: 200%;
     border-bottom: 1px solid #efefef;
 }
 
-h3 {
-    font-weight: normal;
-}
 
 a {color: black; text-decoration: none;}
 a:hover {text-decoration: underline;}
@@ -117,18 +109,10 @@ a:hover {text-decoration: underline;}
     background-color: #FFFFCC;
 }
 
-#content #info_panel #methods {
-    display: block;
-    float: right;
-}
-#content #info_panel a {
-    text-decoration: none;
-    color: black;
-}
-#content #info_panel a:hover {
-    text-decoration: underline;
-}
+#create_action label {font-weight: bold;}
 
+#info_panel input[type=button], #info_panel form {float: right;}
+#info_panel .warning {color: white; background-color: #c00; font-size: 150%; padding: 0.1em;}
 #bottom {
     display: block;
     position: fixed;

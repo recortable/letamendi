@@ -1,19 +1,20 @@
-<div id="methods">
-[ 
-<%= link_to_function 'editar', 'edit_info()' %>
- |
-<%= link_to 'borrar', {:action => 'delete', :id => member}, 
-  :confirm => 'estas a punto de BORRAR este socio' %>
- ]
-</div>
-<label>
-direcci&oacute;n: </label> <%= member.address %><br/>
-<label class="notes">
-notas: <%= member.comments %><br/></label> 
-<label>
-agregad@s: </label> <%= member.friends %><br/>
-<label>
-email: </label> <%= member.email %><br/>
-<label>
-tel&eacute;fono: </label> <%= member.telephone %><br/>
+<table>
+  <thead><tr><td>Datos</td>
+      <td>
+        <!-- <%= button_to 'borrar', {:action => 'delete', :id => member},   :confirm => 'estas a punto de BORRAR este socio' %> -->
+        <%= button_to_function 'editar', 'edit_info()' %>
+      </td>
+  </tr></thead>
+  <tbody>
+    <tr class="par"><td>Número:</td><td><%= @member.number %></td>
+    <tr class="impar"><td>Nombre:</td><td><%= @member.name %></td>
+    <tr class="par"><td>Comentarios:</td><td><%= content_tag(:p, @member.comments, :class => 'warning') unless @member.comments.empty? %></td>
+    <tr class="impar"><td>Amigxs:</td><td><%= @member.friends %></td>
+    <tr class="par"><td>Teléfono:</td><td><%= @member.telephone %></td>
+    <tr class="impar"><td>Dirección:</td><td><%= @member.address %></td>
+    </tr>
+  </tbody>
+</table>
+
+
 

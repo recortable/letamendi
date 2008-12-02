@@ -1,0 +1,5 @@
+    <% for rent in rents -%>
+      <tr class="<%= cycle 'par', 'impar' %> "><td class="item <%= status %> "></td><td><%= link_to_member rent.member %></td>
+        <td><% for item in rent.items -%><%= link_to_movie item.movie %><br/><% end -%></td>
+      </tr>
+    <% end %>

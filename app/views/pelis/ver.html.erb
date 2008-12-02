@@ -42,15 +42,12 @@
 <% end %>
 
 
-<h2>otras u otros que alquilaron esta peli</h2>
+<h2>Otras personas que alquilaron esta película</h2>
 <table>
-  <thead>
-    <tr><td></td><td>Fecha</td><td>Quién</td></tr>
-  </thead>
   <tbody>
     <% for item in @movie.closed_items -%>
       <tr class="<%= cycle 'par', 'impar' %>">
-        <td class="closed_item">&nbsp;</td>
+        <td class="item closed">&nbsp;</td>
         <td><%= fecha item.rent.begin_date %></td>
         <td><%=  link_to_member item.rent.member %></td>
       </tr>

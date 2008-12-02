@@ -15,7 +15,7 @@ class Movie < ActiveRecord::Base
   end
 
   def closed_items
-    RentItem.find(:all, :conditions => ['movie_id = ? AND closed = 1', self.id])
+    RentItem.find(:all, :conditions => ['movie_id = ? AND closed = 1', self.id], :order => 'id DESC')
   end
 end
 

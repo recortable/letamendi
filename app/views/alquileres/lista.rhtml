@@ -1,39 +1,25 @@
 <% name = dias(@report.distance) %>
 <h1>
-<%= link_to image_tag('prev.png'), :action => 'lista', :id => @report.prev_day %>
-<%= link_to image_tag('next.png'), :action => 'lista', :id => @report.next_day %>
- (<%= fecha @report.day %>)
- <%= name %>
-</h1>
+  <%= link_to image_tag('prev.png'), :action => 'lista', :id => @report.prev_day %>
+  <%= link_to image_tag('next.png'), :action => 'lista', :id => @report.next_day %>
+Informe <%= fecha @report.day %> (<%= name %>)</h1>
 
-<h3>
-socios <%= name %>: 
-<%= @report.rents %>
-</h3>
+<h2>Estadísticas</h2>
+número de personas que alquilaron películas: <%= @report.rents %><br/>
+número de pelis alquiladas: <%= @report.items %>
 
-<h3>
-pelis <%= name %>: 
-<%= @report.items %>
-</h3>
+<h2>Estado de los alquileres</h2>
+<table>
+  <thead><td></td><td></td><td></td></thead>
+  <tbody>
+    <tr><td class="group" colspan="3">Alquiladas <%= name %></td></tr>
+    <%= render :partial => 'rents', :locals => {:rents => @report.opened, :status => 'opened_today'} %>
+    <tr><td class="group" colspan="3">Devueltas <%= name %></td></tr>
+    <%= render :partial => 'rents', :locals => {:rents => @report.closed, :status => 'closed'} %>
+    <tr><td class="group" colspan="3">Deberían volver <%= name %></td></tr>
+    <%= render :partial => 'rents', :locals => {:rents => @report.waiting, :status => 'waiting'} %>
+    <tr><td class="group" colspan="3">A dia de <%= name %> ya tienen retraso </td></tr>
+    <%= render :partial => 'rents', :locals => {:rents => @report.delayed, :status => 'delayed'} %>
+  </tbody>
+</table>
 
-<h2>los alquileres
-</h2>
-<div class="rent_list" id="rent_list_opened">
-<%= render(:partial => 'rent', :collection => @report.opened) if @report.opened %>
-</div>
-
-<h2>las devoluciones
-</h2>
-<div class="rent_list" id="rent_list_closed">
-<%= render(:partial => 'rent', :collection => @report.closed) if @report.closed  %>
-</div>
-
-<h2>los alquileres que deben volver <%= name %></h2>
-<div class="rent_list" id="rent_list_waiting">
-<%= render(:partial => 'rent', :collection => @report.waiting) if @report.waiting  %>
-</div>
-
-<h2>alquileres con retraso</h2>
-<div class="rent_list" id="rent_list_delayed">
-<%= render( :partial => 'rent', :collection => @report.delayed) if @report.delayed  %>
-</div>
