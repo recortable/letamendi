@@ -43,9 +43,9 @@
 
     </div>
 
+    <%= render :partial => '/layouts/search' %>
     <div id="content">
-      <%= render :partial => '/layouts/search' %>
-      <%= @content_for_layout %>
+      <%= yield %>
     </div>
 
   </body>

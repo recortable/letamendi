@@ -9,14 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 10) do
-
-  create_table "comments", :force => true do |t|
-    t.string   "text"
-    t.integer  "type"
-    t.integer  "object"
-    t.datetime "created_at"
-  end
+ActiveRecord::Schema.define(:version => 20081202172430) do
 
   create_table "list_items", :force => true do |t|
     t.string  "name"
@@ -63,8 +56,12 @@ ActiveRecord::Schema.define(:version => 10) do
     t.integer  "prorrogue"
   end
 
-  add_index "rents", ["begin_date"], :name => "index_rents_on_begin_date"
-  add_index "rents", ["closed"], :name => "index_rents_on_closed"
-  add_index "rents", ["end_date"], :name => "index_rents_on_end_date"
+  add_index "rents", ["begin_date"], :name => "rents_begin_date_index"
+  add_index "rents", ["closed"], :name => "rents_closed_index"
+  add_index "rents", ["end_date"], :name => "rents_end_date_index"
+
+  create_table "schema_info", :id => false, :force => true do |t|
+    t.integer "version"
+  end
 
 end
