@@ -20,7 +20,6 @@ class PelisController < ApplicationController
       @error = "no existe peli con n&uacute;mero #{num}"
       render :action => '/gabinete/error_page'
     else
-      @closed_rents = @movie.find_all_rents_closed
       @rent = @movie.current_rent
     end
   end

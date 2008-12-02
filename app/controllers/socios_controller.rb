@@ -18,8 +18,7 @@ class SociosController < ApplicationController
     num = params[:id]
     @member = Member.find_by_number(num)
     if @member.nil?
-      @error = "no existe socio con n&uacute;mero #{num}"
-      render :action => '../gabinete/error_page'
+      render :text => "Error: no existe socio con n&uacute;mero #{num}"
     else
       @rent = Rent.find_current_of @member
       @waiting_rents = @member.find_all_rents_ends_on Time.now

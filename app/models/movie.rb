@@ -13,11 +13,9 @@ class Movie < ActiveRecord::Base
     item = current_item
     item.rent if !item.nil?
   end
-  
-  def find_all_rents_closed
-    items = RentItem.find_all_by_movie_id(id, :conditions =>
-      ['closed = 1']);
-    rents = items.map {|i| i.rent}
+
+  def closed_items
+    RentItem.find(:all, :conditions => ['movie_id = ? AND closed = 1', self.id])
   end
 end
 

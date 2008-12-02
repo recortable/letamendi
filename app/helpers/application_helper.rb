@@ -47,7 +47,11 @@ module ApplicationHelper
     render :update do |page|
       page.show_info info
     end
-  end    
+  end
+
+  def link_to_member(member)
+    link_to member.name, :controller => 'socios', :action => 'ver', :id => member
+  end
   
   def link_to_movie(movie) 
     link_to movie.title, :controller => 'pelis',

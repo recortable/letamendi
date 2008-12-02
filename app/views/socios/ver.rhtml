@@ -33,11 +33,16 @@
 </div>
 
 <h2>otras pelis que ha ido alquilando</h2>
-<div class="rent_list" id="rent_list_closed">
-  <% @display_name = false %>
-  <% @display_actions = false %>
-  <% @display_prorrogue = false %>
-  <% rents = @member.find_all_rents_closed %>
-  <%= render :partial => '/alquileres/rent', :collection => rents %>
-</div>
-
+<table>
+  <tbody>
+  <% for rent in @member.closed_rents -%>
+    <% for item in rent.items %>
+    <tr class="<%= cycle 'par', 'impar' %>">
+      <td class="closed_item">&nbsp;</td>
+      <td><%= fecha rent.begin_date %></td>
+      <td><%=  link_to_movie item.movie %></td>
+    </tr>
+    <% end %>
+  <% end -%>
+  </tbody>
+</table>

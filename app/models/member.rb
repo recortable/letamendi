@@ -15,9 +15,8 @@ class Member < ActiveRecord::Base
       ['closed = 0 AND end_date < ?', today])
   end
   
-  def find_all_rents_closed
-    Rent.find_all_by_member_id(id, :conditions =>
-      ['closed = 1'])
+  def closed_rents
+    Rent.find(:all, :conditions => ['member_id = ? AND closed = 1', self.id], :order => 'begin_date DESC')
   end
 
   # TODO not DRY see rent

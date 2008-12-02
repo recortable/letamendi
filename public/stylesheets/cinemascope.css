@@ -138,6 +138,7 @@ a:hover {text-decoration: underline;}
     color: white;
 }
 
+.pagination {margin: 0 0 1em 0;}
 .pagination a { background-color: #efefef; padding: 2px;}
 .pagination .current {font-weight: bold;}
 .pagination .disabled {color: gray;}

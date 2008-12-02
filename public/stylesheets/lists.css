@@ -1,10 +1,13 @@
 
 table {  width: 520px; border: 0; margin: 0 0 3em 0;}
-thead tr {font-size: 110%; color: white; background-color: gray;}
+thead tr {font-size: 110%; font-weight: bold; border-bottom: 1px solid black;}
 
-tr.impar { background-color: #efefef; border: 0; }
+
+/*tr.impar { background-color: #efefef; border: 0; }*/
+tr {border-top: 1px solid white; border-bottom: 1px solid gray;}
 
 td { border: 0; padding: 2px; }
 
 td a {  color: black; text-decoration: none; font-size: 90%; }
 tr a:hover {text-decoration: underline;}
+td.closed_item {background-color: #66CC33; border-bottom: 1px solid white;}
