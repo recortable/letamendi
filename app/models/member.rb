@@ -1,7 +1,7 @@
 
 class Member < ActiveRecord::Base
-  has_many :rents
-  
+  has_many :rents, :order => 'id DESC'
+
   def find_all_rents_ends_on(day)
     today, tomorrow = surround_days(day)
     Rent.find_all_by_member_id(id, :conditions =>

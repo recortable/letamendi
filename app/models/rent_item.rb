@@ -1,7 +1,8 @@
 class RentItem < ActiveRecord::Base
   belongs_to :rent
   belongs_to :movie
-  
+  named_scope :open, :conditions => {:closed => false}, :order => 'id DESC'
+
   def close
     update_attribute(:closed, true);
   end

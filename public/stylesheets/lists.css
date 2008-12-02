@@ -1,5 +1,5 @@
 
-table {  width: 520px; border: 0; margin: 0 0 3em 0;}
+table {  width: 520px; border: 0; margin: 0 0 0em 0;}
 thead tr {font-size: 110%; font-weight: bold; border-bottom: 1px solid black;}
 
 
@@ -12,6 +12,12 @@ td a {  color: black; text-decoration: none; font-size: 90%; }
 tr a:hover {text-decoration: underline;}
 td.item {width: 0.1em;  }
 td.closed {background-color: #66CC33; }
-td.opened_today {background-color: #8B00CF;}
+td.open {background-color: #8B00CF;}
 td.waiting {background-color: #FDFF00;}
 td.delayed {background-color: #9F0000;}
+
+td.items div {padding-left: 0.2em; margin-bottom: 1px;}
+td.items div.closed {border-left: 4px solid #66CC33;}
+td.items div.delayed {border-left: 4px solid #9F0000;}
+td.items div.waiting {border-left: 4px solid #FDFF00;}
+td.items div.open {border-left: 4px solid #8B00CF;}

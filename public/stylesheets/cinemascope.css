@@ -1,10 +1,7 @@
 
 h1, h2, h3 {font-family: serif; font-weight: lighter; line-height: 0.8em; margin-top: 1em; margin-bottom: 0.3em;}
 
-h1 {
-    font-size: 400%;
-    margin: 2em 0 1em 0;
-}
+h1 { font-size: 400%; margin: 2em 0 1em 0; }
 
 h2 {
     font-size: 200%;
@@ -111,7 +108,9 @@ a:hover {text-decoration: underline;}
 
 #create_action label {font-weight: bold;}
 
-#info_panel input[type=button], #info_panel form {float: right;}
+#rent_action {margin-top: 2em;}
+
+#info_panel input {margin-top: 0.5em;}
 #info_panel .warning {color: white; background-color: #c00; font-size: 150%; padding: 0.1em;}
 #bottom {
     display: block;

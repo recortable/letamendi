@@ -1,20 +1,16 @@
 <table>
-  <thead><tr><td>Datos</td>
-      <td>
-        <!-- <%= button_to 'borrar', {:action => 'delete', :id => member},   :confirm => 'estas a punto de BORRAR este socio' %> -->
-        <%= button_to_function 'editar', 'edit_info()' %>
-      </td>
-  </tr></thead>
   <tbody>
     <tr class="par"><td>Número:</td><td><%= @member.number %></td>
     <tr class="impar"><td>Nombre:</td><td><%= @member.name %></td>
-    <tr class="par"><td>Comentarios:</td><td><%= content_tag(:p, @member.comments, :class => 'warning') unless @member.comments.empty? %></td>
+    <tr class="par"><td>Comentarios:</td><td><%= content_tag(:p, @member.comments, :class => 'warning') unless empty? @member.comments %></td>
     <tr class="impar"><td>Amigxs:</td><td><%= @member.friends %></td>
     <tr class="par"><td>Teléfono:</td><td><%= @member.telephone %></td>
     <tr class="impar"><td>Dirección:</td><td><%= @member.address %></td>
     </tr>
   </tbody>
 </table>
+<!-- <%= button_to 'borrar', {:action => 'delete', :id => member},   :confirm => 'estas a punto de BORRAR este socio' %> -->
+<%= button_to_function 'editar', 'edit_info()' %>
 
 
 

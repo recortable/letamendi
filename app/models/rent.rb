@@ -1,40 +1,62 @@
 class Rent < ActiveRecord::Base
   belongs_to :member
   has_many :items, :class_name => 'RentItem'
+
+  def delay_in_days
+    @delay_in_days ||= distancia(end_date, Time.now)
+  end
+
+  def distancia(from_time, to_time)
+    from_time = normalize(from_time).to_time
+    to_time = normalize(to_time).to_time
+    ((((to_time - from_time))/(60 * 60 * 24))).to_i
+  end
+
+  def normalize(date)
+    Time.utc(date.year, date.month, date.day)
+  end
+
+  def self.open
+    items = RentItem.open
+    rents = []
+    items.each {|item| rents << item.rent unless rents.include? item.rent }
+    rents
+  end
+
   
   def self.find_all_begins_on(day)
     today, tomorrow = surround_days(day)
     rents = Rent.find(:all, :conditions =>
-      ["closed = 0 AND begin_date > ? AND begin_date < ?", 
-       today, tomorrow], :order => 'begin_date DESC')
+        ["closed = 0 AND begin_date > ? AND begin_date < ?",
+        today, tomorrow], :order => 'begin_date DESC')
   end
   
   def self.find_all_ends_on(day)
     today, tomorrow = surround_days(day)
     rents = Rent.find(:all, :conditions =>
-      ["closed = 0 AND end_date >= ? AND end_date < ?", 
-      today, tomorrow], :order => 'begin_date DESC')
+        ["closed = 0 AND end_date >= ? AND end_date < ?",
+        today, tomorrow], :order => 'begin_date DESC')
   end
   
   def self.find_all_closed_on(day)
     today, tomorrow = surround_days(day)
     rents = Rent.find(:all, :conditions =>
-      ["closed = ? AND close_date > ? AND close_date < ?", 
-      true, today, tomorrow], 
+        ["closed = ? AND close_date > ? AND close_date < ?",
+        true, today, tomorrow],
       :order => 'begin_date DESC')
   end  
   
   def self.find_all_rented_on(day) 
     today, tomorrow = surround_days(day)
     rents = Rent.find(:all, :conditions => 
-      ["begin_date > ? AND begin_date < ?", 
-       today, tomorrow])
+        ["begin_date > ? AND begin_date < ?",
+        today, tomorrow])
   end
   
   def self.find_all_delayed_on(day)
     today, tomorrow = surround_days(day)
     rents = Rent.find(:all, :conditions =>
-      ["closed = ? AND end_date < ?", false, today], 
+        ["closed = ? AND end_date < ?", false, today],
       :order => 'begin_date DESC')
   end  
 
@@ -47,7 +69,7 @@ class Rent < ActiveRecord::Base
   def self.find_current_of(member)
     today, tomorrow = surround_days(Time.now)
     Rent.find_by_member_id(member.id, :conditions =>
-      ["closed = 0 AND begin_date > ? AND begin_date < ?", today, tomorrow])
+        ["closed = 0 AND begin_date > ? AND begin_date < ?", today, tomorrow])
   end
 
   def self.create_current_of(member)
@@ -85,7 +107,7 @@ class Rent < ActiveRecord::Base
     logger.info "end_date: #{end_date}"
     logger.info "close_date: #{close_date}"
     
-    #TODO chapuza!
+    # #TODO chapuza!
     if closed?
       return 'closed' 
     elsif begin_date.strftime("%d/%m/%Y") == today.strftime("%d/%m/%Y")

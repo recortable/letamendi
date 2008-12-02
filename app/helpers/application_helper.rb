@@ -3,7 +3,23 @@ module ApplicationHelper
     def normalize(date)
         Time.utc(date.year, date.month, date.day)
     end
-    
+
+    def empty?(value)
+      return value.nil? || value == ''
+    end
+
+    def item_class(item)
+      if item.closed
+        "closed"
+      elsif item.rent.delay_in_days < 0
+        "open"
+      elsif item.rent.delay_in_days == 0
+        "waiting"
+      else
+        "delayed"
+      end
+    end
+
     def dias(days)
         if days > 0
             prefix = 'dentro de'
@@ -50,7 +66,7 @@ module ApplicationHelper
   end
 
   def link_to_member(member)
-    link_to member.name, :controller => 'socios', :action => 'ver', :id => member unless member.nil?
+    link_to member.name, :controller => 'socios', :action => 'ver', :id => member.number unless member.nil?
   end
   
   def link_to_movie(movie) 

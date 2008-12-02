@@ -19,9 +19,17 @@
 </div>
 
 
-<h2>socias y socios</h2>
-
-<%= will_paginate @members %>
-<br/>
-
-<%= render :partial => 'members', :locals=> {:members => @members} %>
+<h2>Personas con películas alquiladas</h2>
+<table>
+  <tbody>
+    <% for rent in Rent.open -%>
+      <% if rent.member %>
+        <tr class="<%= cycle 'par', 'impar' %>">
+          <td><%= rent.member.number %></td>
+          <td><%= link_to_member rent.member %></td>
+          <td class="items"><% for item in rent.items -%><div class="item <%= item_class item %>"><%= link_to_movie item.movie %></div><% end -%></td>
+        </tr>
+      <% end -%>
+    <% end -%>
+  </tbody>
+</table>

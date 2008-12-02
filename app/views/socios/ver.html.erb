@@ -5,12 +5,12 @@
   <span id="name"><%= @member.name %></span>
 </h1>
 
+<h2>Datos</h2>
 <div  id="info_panel">
   <%= render :partial => 'info', :locals => { :member => @member} %>
 </div>
 
 <div class="action" id="create_action" style="display: none">
-  <h2>Datos</h2>
   <% form_remote_tag :url => {:controller => 'socios', :action => 'update', :id => @member}  do -%>
     <%= render :partial => 'form' %>
     <br/>
@@ -22,9 +22,7 @@
 
 <%= render :partial => 'rent_action', :locals => {:member => @member, :rent => @rent} %>
 
-<h2>
-  alquileres sin devolver
-</h2>
+<h2>Alquileres sin devolver</h2>
 <div class="rent_list" id="rent_list_waiting">
   <%= render :partial => '/alquileres/rent', :collection => @waiting_rents %>
 </div>
@@ -36,12 +34,13 @@
 <h2>Pelis alquiladas con anterioridad</h2>
 <table>
   <tbody>
-  <% for rent in @member.closed_rents -%>
+  <% for rent in @member.rents -%>
     <% for item in rent.items %>
     <tr class="<%= cycle 'par', 'impar' %>">
-      <td class="item closed">&nbsp;</td>
+      <td class="item <%= item_class item %>">&nbsp;</td>
       <td><%= fecha rent.begin_date %></td>
       <td><%=  link_to_movie item.movie %></td>
+      <td><%= "#{rent.delay_in_days} dias de retraso" unless item.closed || rent.delay_in_days < 0 %></td>
     </tr>
     <% end %>
   <% end -%>

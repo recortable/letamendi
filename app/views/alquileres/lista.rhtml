@@ -13,7 +13,7 @@ número de pelis alquiladas: <%= @report.items %>
   <thead><td></td><td></td><td></td></thead>
   <tbody>
     <tr><td class="group" colspan="3">Alquiladas <%= name %></td></tr>
-    <%= render :partial => 'rents', :locals => {:rents => @report.opened, :status => 'opened_today'} %>
+    <%= render :partial => 'rents', :locals => {:rents => @report.opened, :status => 'open'} %>
     <tr><td class="group" colspan="3">Devueltas <%= name %></td></tr>
     <%= render :partial => 'rents', :locals => {:rents => @report.closed, :status => 'closed'} %>
     <tr><td class="group" colspan="3">Deberían volver <%= name %></td></tr>

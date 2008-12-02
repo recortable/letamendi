@@ -10,7 +10,6 @@ class SociosController < ApplicationController
     last = Member.find(:first, :order => 'number DESC')
     @number = last.number + 1
     @member = Member.new(:number => @number) if !@member
-    @members = Member.paginate :page => params[:page], :order => 'number DESC'
   end
 
 
