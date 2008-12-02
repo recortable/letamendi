@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20081202172430) do
+ActiveRecord::Schema.define(:version => 20081202173101) do
 
   create_table "list_items", :force => true do |t|
     t.string  "name"
@@ -39,10 +39,14 @@ ActiveRecord::Schema.define(:version => 20081202172430) do
   end
 
   create_table "rent_items", :force => true do |t|
-    t.integer "rent_id"
-    t.integer "movie_id"
-    t.boolean "closed"
-    t.float   "price"
+    t.integer  "rent_id"
+    t.integer  "movie_id"
+    t.boolean  "closed"
+    t.float    "price"
+    t.integer  "member_id"
+    t.datetime "begin_date"
+    t.datetime "end_date"
+    t.datetime "close_date"
   end
 
   create_table "rents", :force => true do |t|
