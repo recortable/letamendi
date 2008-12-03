@@ -22,7 +22,7 @@
 
 
 <% if !@rent.nil? %>
-  <h2>esta peli est&aacute; alquilada por
+  <h2>esta peli está alquilada por
     [<%= @rent.member.number %>]
     <%= @rent.member.name %>
   </h2>
@@ -34,7 +34,7 @@
 
   <div id="rent_movie_action" class="action">
     <% form_tag :action => 'rented_by', :id => @movie.number do -%>
-      alquilar esta peli por socio n&uacute;mero:
+      alquilar esta peli por socio número:
       <%= text_field_tag 'member_number' %>
     <% end -%>
   </div>

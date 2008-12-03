@@ -11,9 +11,9 @@ module ApplicationHelper
     def item_class(item)
       if item.closed
         "closed"
-      elsif item.rent.delay_in_days < 0
+      elsif item.delay_in_days < 0
         "open"
-      elsif item.rent.delay_in_days == 0
+      elsif item.delay_in_days == 0
         "waiting"
       else
         "delayed"

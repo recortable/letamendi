@@ -1,6 +1,11 @@
 
 class Member < ActiveRecord::Base
   has_many :rents, :order => 'id DESC'
+  has_many :rent_items, :order => 'id DESC'
+
+  def items
+    RentItem.find(:all, :include => [:movie, :member], :conditions => ['rent_items.member_id = ?', self.id] )
+  end
 
   def find_all_rents_ends_on(day)
     today, tomorrow = surround_days(day)

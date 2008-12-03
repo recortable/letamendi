@@ -34,15 +34,13 @@
 <h2>Pelis alquiladas con anterioridad</h2>
 <table>
   <tbody>
-  <% for rent in @member.rents -%>
-    <% for item in rent.items %>
-    <tr class="<%= cycle 'par', 'impar' %>">
-      <td class="item <%= item_class item %>">&nbsp;</td>
-      <td><%= fecha rent.begin_date %></td>
-      <td><%=  link_to_movie item.movie %></td>
-      <td><%= "#{rent.delay_in_days} dias de retraso" unless item.closed || rent.delay_in_days < 0 %></td>
-    </tr>
-    <% end %>
-  <% end -%>
+    <% for item in @member.items -%>
+      <tr class="<%= cycle 'par', 'impar' %>">
+        <td class="item <%= item_class item %>">&nbsp;</td>
+        <td><%= fecha item.begin_date %></td>
+        <td><%=  link_to_movie item.movie %></td>
+        <td><%= "#{item.delay_in_days} dias de retraso" unless item.closed || item.delay_in_days < 0 %></td>
+      </tr>
+    <% end -%>
   </tbody>
 </table>

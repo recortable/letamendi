@@ -6,16 +6,6 @@ class Rent < ActiveRecord::Base
     @delay_in_days ||= distancia(end_date, Time.now)
   end
 
-  def distancia(from_time, to_time)
-    from_time = normalize(from_time).to_time
-    to_time = normalize(to_time).to_time
-    ((((to_time - from_time))/(60 * 60 * 24))).to_i
-  end
-
-  def normalize(date)
-    Time.utc(date.year, date.month, date.day)
-  end
-
   def self.open
     items = RentItem.open
     rents = []
@@ -117,5 +107,16 @@ class Rent < ActiveRecord::Base
     else
       return 'delayed'
     end
+  end
+  
+  private
+    def distancia(from_time, to_time)
+    from_time = normalize(from_time).to_time
+    to_time = normalize(to_time).to_time
+    ((((to_time - from_time))/(60 * 60 * 24))).to_i
+  end
+
+  def normalize(date)
+    Time.utc(date.year, date.month, date.day)
   end
 end

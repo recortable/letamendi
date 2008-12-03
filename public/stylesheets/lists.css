@@ -16,8 +16,8 @@ td.open {background-color: #8B00CF;}
 td.waiting {background-color: #FDFF00;}
 td.delayed {background-color: #9F0000;}
 
-td.items div {padding-left: 0.2em; margin-bottom: 1px;}
-td.items div.closed {border-left: 4px solid #66CC33;}
-td.items div.delayed {border-left: 4px solid #9F0000;}
-td.items div.waiting {border-left: 4px solid #FDFF00;}
-td.items div.open {border-left: 4px solid #8B00CF;}
+td div.item {padding-left: 1em; margin-bottom: 1px;}
+td div.closed {border-left: 1.2em solid #66CC33;}
+td div.delayed {border-left: 1.2em solid #9F0000;}
+td div.waiting {border-left: 1.2em solid #FDFF00;}
+td div.open {border-left: 1.2em solid #8B00CF;}

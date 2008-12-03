@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20081202173101) do
+ActiveRecord::Schema.define(:version => 20081203152316) do
 
   create_table "list_items", :force => true do |t|
     t.string  "name"
@@ -47,6 +47,9 @@ ActiveRecord::Schema.define(:version => 20081202173101) do
     t.datetime "begin_date"
     t.datetime "end_date"
     t.datetime "close_date"
+    t.string   "begins_at"
+    t.string   "ends_at"
+    t.string   "closed_at"
   end
 
   create_table "rents", :force => true do |t|
