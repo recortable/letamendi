@@ -1,9 +1,40 @@
 class RentItem < ActiveRecord::Base
   belongs_to :movie
   belongs_to :member
-  named_scope :open, :conditions => {:closed_at => nil} 
+  named_scope :open, :conditions => {:closed_at => nil}
+  named_scope :open_today, :conditions => {:begins_at =>   Time.now.to_db}
+  named_scope :delayed, :conditions => ['ends_at < ? && closed_at IS NULL', Time.now.to_db]
+  named_scope :waiting, :conditions => {:ends_at => Time.now.to_db, :closed_at => nil}
   named_scope :by_member, :order => 'member_id'
   named_scope :by_movie,  :order => 'movie_id'
+
+  def close
+    RentItem.transaction do
+      update_attribute(:closed_at, Time.now.to_db)
+    end
+  end
+
+  def reopen
+    RentItem.transaction do
+      update_attribute(:closed_at, nil)
+    end
+  end
+
+  def open?
+    closed_at == nil
+  end
+
+  def closed?
+    !open?
+  end
+
+  def closed_today?
+    closed? && closed_at == Time.now.to_db
+  end
+
+  def delayed?
+    open? && ends_at < Time.now.to_db
+  end
 
   def delay_in_days
     @delay_in_days ||= distancia(end_date, Time.now)
@@ -19,11 +50,4 @@ class RentItem < ActiveRecord::Base
     Time.utc(date.year, date.month, date.day)
   end
 
-  def close
-    update_attribute(:closed, true);
-  end
-  
-  def reopen
-    update_attribute(:closed, false);
-  end
 end

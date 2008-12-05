@@ -1,8 +1,11 @@
 
 class Member < ActiveRecord::Base
-  has_many :rents, :order => 'id DESC'
   has_many :rent_items, :order => 'id DESC'
-
+  has_many :closed_items, :class_name => 'RentItem', :foreign_key => 'member_id',
+    :conditions => ['closed_at IS NOT NULL'], :order => 'id DESC'
+  has_many :open_items, :class_name => 'RentItem', :foreign_key => 'member_id',
+    :conditions => ['closed_at IS NULL'], :order => 'id DESC'
+  
   def items
     RentItem.find(:all, :include => [:movie, :member], :conditions => ['rent_items.member_id = ?', self.id] )
   end

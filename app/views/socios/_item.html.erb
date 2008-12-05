@@ -1,0 +1,6 @@
+<tr class="<%= cycle 'par', 'impar' %>">
+  <td class="item <%= item_class item %>">&nbsp;</td>
+  <td>[<%= item.member.number unless item.member.nil? %>]</td>
+  <td><%= link_to_member item.member %></td>
+  <td><%= link_to_movie item.movie %></td>
+</tr>

@@ -1,0 +1,54 @@
+
+a {color: black; text-decoration: none;}
+a:hover {text-decoration: underline;}
+
+h1, h2 {margin-top: 1em; font-family: serif; border-bottom: 1px solid #efefef; line-height: 0.8em;}
+
+h1 {font-size: 200%;}
+h2 {font-size: 150%;}
+
+div.actions { width: 100%; overflow: hidden;}
+
+.actions .action {display: block; float: left; background-color: #efefef; padding: 0.1em 0.5em;
+    margin: 0 0.3em 0 0; -moz-border-radius: 2%; font-weight: bold; }
+.actions .action.green {color: #0c0; }
+.actions  .action.red {color: #c00; }
+.actions .action.orange {color: #FF8A00;}
+
+
+table {margin: 1em 0;}
+tr {border-top: 1px solid white; border-bottom: 1px solid gray;}
+tr.impar { background-color: #efefef; }
+tr.item {border-left: 1em solid black;}
+tr.item.closed {border-left-color: green;}
+tr.item.today {border-left-color: #66CC33;}
+tr.item.open {border-left-color: #8B00CF;}
+tr.item.waiting {border-left-color: #FDFF00;}
+tr.item.delayed {border-left-color: #9F0000;}
+td {padding: 0.1em 0.4em;}
+td.group {padding-top: 1em; font-weight: bold; font-family: serif; font-size: 120%;}
+td.actions {font-size: 80%;}
+
+.section { width: 100%; overflow: hidden;}
+.main { float: left; width: 60%; margin-left: 5%; }
+.search {float: left; width: 35%; }
+
+.important { background-color: red; color: white; font-size: 120%; padding: 1em; margin: 1em 0;
+    border: 1px solid #c00; font-weight: bold;}
+
+#controls {background-color: black; padding: 0.5em 1em;}
+#controls .action { float: left; width: 50px;margin-right: 1em;}
+#controls .action a {display: block; height: 60px; width: 50px; text-align: center;}
+#controls .action a img {margin: 2px auto;}
+#controls .action input {width: 50px; border: 1px solid black; padding: 2px;}
+
+.notice {padding: 0.5em 1em; background-color: orange; font-family: serif; font-size: 120%;}
+
+.info {margin: 1em 2em; border: 1px solid #efefef; padding: 1em;}
+.info p {width: 100%; overflow: hidden; padding-bottom: 0.2em;}
+.info label {font-weight: bold; margin-right: 1em;}
+
+#info_data .actions {margin-top: 1em;}
+
+.rent {font-size: 150%; margin: 1em 1em 0 1em; background-color: #efefef; padding: 0.3em;}
+.rent input {border: 1px solid black; width: 4em;}

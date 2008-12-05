@@ -21,11 +21,11 @@
 ordenadas por número<br/><br/>
 <table>
   <tbody>
-    <% for item in RentItem.open_by_movie -%><tr class="<%= cycle 'par', 'impar' %>">
-          <td class="item <%= item_class item %>">&nbsp;</td>
-          <td>[<%= item.movie.number unless item.movie.nil? %>]</td>
-          <td><%= link_to_movie item.movie %></td>
-          <td><%= link_to_member item.member %></td>
-        </tr><% end -%>
+    <tr><td class="group" colspan="4">Alquiladas hoy</td></tr>
+    <%= render :partial => 'item', :collection => RentItem.open_today.by_movie %>
+    <tr><td class="group" colspan="4">Deberían volver hoy</td></tr>
+    <%= render :partial => 'item', :collection => RentItem.waiting.by_movie %>
+    <tr><td class="group" colspan="4">Con retraso</td></tr>
+    <%= render :partial => 'item', :collection => RentItem.delayed.by_movie %>
   </tbody>
 </table>

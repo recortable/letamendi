@@ -1,0 +1,20 @@
+<tr class="item <%= class_of_item item %> <%= cycle 'par', 'impar' %>">
+  <td><%= fecha item.begins_at %></td>
+  <% if !@hide_member -%>
+    <td>[<%= item.member.number if item.member %>]</td>
+    <td><%= link_to_member item.member %></td>
+  <% end -%>
+  <% if !@hide_movie -%>
+    <td>(<%= item.movie.number %>)</td>
+    <td><%= link_to_movie item.movie %></td>
+  <% end -%>
+  <%  if item.open? -%>
+    <td class="actions"><%= link_to 'devolver', {:action => 'devolver', :id => item}, :class => 'action green' %></td>
+    <td>retraso: <%= item.delay_in_days %> días</td>
+  <% elsif item.closed_today? -%>
+    <td><%= link_to 'me equivoqué, está alquilada', {:action => 'nodevolver', :id => item}, :class => 'action red' %></td>
+    <td />
+  <% else %>
+    <td /><td />
+  <% end -%>
+</tr>

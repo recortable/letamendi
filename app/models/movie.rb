@@ -1,21 +1,13 @@
 
 class Movie < ActiveRecord::Base
+  has_many :closed_items, :class_name => 'RentItem', :foreign_key => 'movie_id',
+    :conditions => ['closed_at IS NOT NULL'], :order => 'id DESC'
+  has_one :open_item, :class_name => 'RentItem', :foreign_key => 'movie_id',
+    :conditions => ['closed_at IS NULL'], :order => 'id DESC'
+
   def rented?
-    !current_item.nil?
+    !open_item.nil?
   end
 
-  def current_item
-    RentItem.find_by_movie_id(id, :conditions =>
-      ["closed = ?", false]);
-  end  
-  
-  def current_rent
-    item = current_item
-    item.rent if !item.nil?
-  end
-
-  def closed_items
-    RentItem.find(:all, :conditions => ['movie_id = ? AND closed = 1', self.id], :order => 'id DESC')
-  end
 end
 

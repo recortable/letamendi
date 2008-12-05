@@ -1,0 +1,13 @@
+<h1>Socias y socios</h1>
+
+<div class="actions">
+  <%= link_to 'añadir socia o socio', {:action => 'pescar'}, :class => 'action orange' %>
+</div>
+
+<h2>Personas con películas en alquiler</h2>
+<table>
+  <tbody>
+    <% @hide_movie = true %>
+    <%= render :partial => 'item', :collection => RentItem.open.by_member %>
+  </tbody>
+</table>

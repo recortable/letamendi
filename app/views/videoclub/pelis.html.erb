@@ -1,0 +1,8 @@
+<h1>Películas</h1>
+
+<h2>Películas alquiladas actualmente</h2>
+<table>
+  <tbody>
+    <%= render :partial => 'member_item', :collection => RentItem.open.by_movie %>
+  </tbody>
+</table>

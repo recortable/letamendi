@@ -1,0 +1,55 @@
+<% content_for :header do -%>
+  <script type="text/javascript">
+    $("#movie_number").text("").focus();
+
+    $(function() {
+      $("#hide_info").click(function() {
+        $("#info_data").slideUp('slow', function () {$("#show_info").slideDown();});
+        return false;
+      });
+
+      $("#show_info").click(function() {
+        $("#show_info").slideUp(function() {$("#info_data").slideDown('slow');});
+        return false;
+      })
+    });
+  </script>
+<% end %>
+
+<h1>[<%= @member.number %>] <%= @member.name %></h1>
+
+<%= content_tag(:div, @member.comments, :class => 'important') if @member.comments && !@member.comments.empty? %>
+
+<div class="rent">
+  <% form_tag(url_for({:controller => 'videoclub', :action => 'alquilar', :id => @member}), :method => 'get') do -%>
+    Alquilar película: <%= text_field_tag 'movie_number' %>
+  <% end -%>
+</div>
+
+
+<div class="info">
+  <div class="actions"><%= empty_link 'mostrar datos', :show_info, 'action green' %></div>
+  <div id="info_data" style="display: none;">
+    <p><label>Número:</label><%= @member.number %></p>
+    <p><label>Nombre:</label><%= @member.name %></p>
+    <p><label>Amig@s:</label><%= @member.friends %></p>
+    <p><label>Dirección:</label><%= @member.address %></p>
+    <p><label>Teléfono:</label><%= @member.telephone %></p>
+    <div class="actions"><%= link_to 'modificar', {:action => 'edit_member', :id => @member}, :class => 'action orange' %>
+      <%= empty_link 'ocultar datos', :hide_info, 'action green' %>
+    </div>
+  </div>
+</div>
+
+
+
+
+<table>
+  <tbody>
+    <% @hide_member = true -%>
+    <tr><td class="group" colspan="3">Pelis por devolver</td></tr>
+    <%= render :partial => 'item', :collection => @member.open_items %>
+    <tr><td class="group" colspan="3">Pelis alquiladas anteriormente</td></tr>
+    <%= render :partial => 'item', :collection => @member.closed_items %>
+  </tbody>
+</table>
