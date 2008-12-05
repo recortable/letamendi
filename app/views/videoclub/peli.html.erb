@@ -10,6 +10,7 @@
 <table>
   <tbody>
     <tr><td class="group" colspan="3">Personas que la alquilaron anteriormente</td></tr>
-    <%= render :partial => 'movie_item', :collection => @movie.closed_items %>
+    <% @hide_movie = true -%>
+    <%= render :partial => 'item', :collection => @movie.closed_items %>
   </tbody>
 </table>

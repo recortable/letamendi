@@ -7,13 +7,13 @@ h1, h2 {margin-top: 1em; font-family: serif; border-bottom: 1px solid #efefef; l
 h1 {font-size: 200%;}
 h2 {font-size: 150%;}
 
-div.actions { width: 100%; overflow: hidden;}
+div.actions { width: 100%; overflow: hidden; padding: 0.5em 0;}
 
-.actions .action {display: block; float: left; background-color: #efefef; padding: 0.1em 0.5em;
+.actions .action {display: block; float: left; background-color: #CFCFCF; padding: 0.1em 0.5em;
     margin: 0 0.3em 0 0; -moz-border-radius: 2%; font-weight: bold; }
-.actions .action.green {color: #0c0; }
+.actions .action.green {color: #008000; }
 .actions  .action.red {color: #c00; }
-.actions .action.orange {color: #FF8A00;}
+.actions .action.orange {color: #FF7A0F;}
 
 
 table {margin: 1em 0;}
@@ -42,7 +42,10 @@ td.actions {font-size: 80%;}
 #controls .action a img {margin: 2px auto;}
 #controls .action input {width: 50px; border: 1px solid black; padding: 2px;}
 
-.notice {padding: 0.5em 1em; background-color: orange; font-family: serif; font-size: 120%;}
+.flash {padding: 0.5em 1em;  font-family: serif; font-size: 120%;}
+.notice {background-color: orange;}
+.error {background-color: red;}
+.done {background-color: #5FFF0F;}
 
 .info {margin: 1em 2em; border: 1px solid #efefef; padding: 1em;}
 .info p {width: 100%; overflow: hidden; padding-bottom: 0.2em;}

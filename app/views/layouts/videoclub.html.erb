@@ -20,15 +20,18 @@
             <%= text_field_tag 'movie_id' %>
           <% end -%>
         </div>
-        <div class="search">
+        <%= link_to image_tag('alquileres.png'), :action => 'index' %>
+        <div id="search_controls">
+          
         </div>
-        <div id="search_controls"></div>
       </div>
     </div>
 
     <div id="content" class="section">
       <div class="main">
-        <%= content_tag :div, flash[:notice], :class => 'notice' if flash[:notice] %>
+        <%= content_tag :div, flash[:error], :class => 'flash error' if flash[:error] %>
+        <%= content_tag :div, flash[:done], :class => 'flash done' if flash[:done] %>
+        <%= content_tag :div, flash[:notice], :class => 'flash notice' if flash[:notice] %>
         <%= yield %>
       </div>
       <div class="search"></div>

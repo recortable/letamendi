@@ -28,6 +28,10 @@ class RentItem < ActiveRecord::Base
     !open?
   end
 
+  def open_today?
+    open? && begins_at == Time.now.to_db
+  end
+
   def closed_today?
     closed? && closed_at == Time.now.to_db
   end
@@ -37,7 +41,7 @@ class RentItem < ActiveRecord::Base
   end
 
   def delay_in_days
-    @delay_in_days ||= distancia(end_date, Time.now)
+    @delay_in_days ||= distancia(Time.from_db(ends_at), Time.now)
   end
 
   def distancia(from_time, to_time)

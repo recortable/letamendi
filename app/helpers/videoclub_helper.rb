@@ -4,6 +4,12 @@ module VideoclubHelper
     encoded[6..7] + '/' + encoded[4..5] + '/' + encoded[0..3] unless encoded.nil?
   end
 
+  def retraso(item)
+    days = item.delay_in_days
+    return content_tag :div, "#{days} dias de retraso", :class => 'delayed' if days > 0
+#    return content_tag :div, "faltan #{-1 * days} dias", :class => 'open' if days < 0
+  end
+
   def class_of_item(item)
     return 'today' if item.closed_today?
     return 'closed' if item.closed?

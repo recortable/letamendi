@@ -3,6 +3,12 @@
 <h2>Películas alquiladas actualmente</h2>
 <table>
   <tbody>
-    <%= render :partial => 'member_item', :collection => RentItem.open.by_movie %>
+    <% @hide_member = true %>
+    <tr><td class="group" colspan="3">Alquiladas hoy</td></tr>
+    <%= render :partial => 'item', :collection => RentItem.open_today.by_movie %>
+    <tr><td class="group" colspan="3">Deberían volver hoy</td></tr>
+    <%= render :partial => 'item', :collection => RentItem.waiting.by_movie %>
+    <tr><td class="group" colspan="3">Con retraso</td></tr>
+    <%= render :partial => 'item', :collection => RentItem.delayed.by_movie %>
   </tbody>
 </table>

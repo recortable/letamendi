@@ -5,22 +5,36 @@ class Member < ActiveRecord::Base
     :conditions => ['closed_at IS NOT NULL'], :order => 'id DESC'
   has_many :open_items, :class_name => 'RentItem', :foreign_key => 'member_id',
     :conditions => ['closed_at IS NULL'], :order => 'id DESC'
+
+
   
   def items
     RentItem.find(:all, :include => [:movie, :member], :conditions => ['rent_items.member_id = ?', self.id] )
   end
 
+  def rent(movie)
+    if !movie.rented?
+      Member.transaction do
+        item = RentItem.new(:member_id => self.id, :movie_id => movie.id)
+        item.begins_at = Time.now.to_db
+        item.ends_at = (Time.now + 1.day).to_db
+        item.save!
+      end
+    end
+  end
+
+  # DEPRECATED
   def find_all_rents_ends_on(day)
     today, tomorrow = surround_days(day)
     Rent.find_all_by_member_id(id, :conditions =>
-      ['closed = 0 AND end_date >= ? AND end_date < ?', 
-      today, tomorrow])
+        ['closed = 0 AND end_date >= ? AND end_date < ?',
+        today, tomorrow])
   end
   
   def find_all_rents_delayed_on(day)
     today, tomorrow = surround_days(day)
     Rent.find_all_by_member_id(id, :conditions =>
-      ['closed = 0 AND end_date < ?', today])
+        ['closed = 0 AND end_date < ?', today])
   end
   
   def closed_rents

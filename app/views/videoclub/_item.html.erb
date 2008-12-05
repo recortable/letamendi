@@ -9,10 +9,13 @@
     <td><%= link_to_movie item.movie %></td>
   <% end -%>
   <%  if item.open? -%>
-    <td class="actions"><%= link_to 'devolver', {:action => 'devolver', :id => item}, :class => 'action green' %></td>
-    <td>retraso: <%= item.delay_in_days %> días</td>
+    <td class="actions">
+      <%= link_to( 'me equivoqué, no quería alquilar esta', {:action => 'alquiler_erroneo', :id => item}, :class => 'action red') if item.open_today? && @member %>
+      <%= link_to 'devolver', {:action => 'devolver', :id => item}, :class => 'action green' %>
+    </td>
+    <td><%= retraso item %></td>
   <% elsif item.closed_today? -%>
-    <td><%= link_to 'me equivoqué, está alquilada', {:action => 'nodevolver', :id => item}, :class => 'action red' %></td>
+    <td class="actions"><%= link_to 'me equivoqué, sigue alquilada', {:action => 'nodevolver', :id => item}, :class => 'action red' %></td>
     <td />
   <% else %>
     <td /><td />
