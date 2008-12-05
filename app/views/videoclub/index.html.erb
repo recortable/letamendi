@@ -1,9 +1,5 @@
 <h1>El gabinete </h1>
 
-<div class="actions">
-  <%= link_to 'alquileres', {:action => 'items'}, :class => 'action red' %>
-</div>
-
 <h2>Tarifas</h2>
 <table>
   <thead>
@@ -15,9 +11,10 @@
         <td><%= tarifa.name %></td>
         <td><%= precio tarifa.price %> €</td>
         <td><%= tarifa.days_to_rent %> días</td>
-        <td><%= precio tarifa.delay_price %></td>
-        <td class="actions"><%= link_to('modificar', {:action => 'cambiar_tarifa', :id => tarifa}, :class => 'action red') %></td>
+        <td><%= precio tarifa.delay_price %> €</td>
+        <td class="actions"><%= link_to('modificar', {:action => 'editar_tarifa', :id => tarifa}, :class => 'action orange') %></td>
       </tr>
     <% end -%>
   </tbody>
 </table>
+<div class="actions"><%= link_to 'añadir tarifa', {:action => 'editar_tarifa', :id => nil}, :class => 'action green' %></div>

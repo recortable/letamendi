@@ -51,4 +51,18 @@ class VideoclubController < ApplicationController
     redirect_to :action => 'socio', :id => item.member.number
   end
 
+  def editar_tarifa
+    @tarifa = params[:id] ? Tarifa.find(params[:id]) : Tarifa.new
+  end
+
+  def guardar_tarifa
+    tarifa = params[:id] ? Tarifa.find(params[:id]) : Tarifa.new
+    if tarifa.update_attributes params[:tarifa]
+      flash[:done] = "Tarifa #{tarifa.name} actualizada."
+    else
+      false[:error] = "Error guardando la tarifa. Inténtalo de nuevo"
+    end
+    redirect_to :action => 'index'
+  end
+
 end

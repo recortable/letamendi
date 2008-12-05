@@ -5,7 +5,7 @@ module VideoclubHelper
   end
 
   def precio(price)
-    price.nil? ? '0.00' : (price / 100).to_s
+    price.nil? ? '0.00' : (price.to_f / 100).to_s
   end
 
   def retraso(item)

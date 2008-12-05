@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20081205154536) do
+ActiveRecord::Schema.define(:version => 20081205161419) do
 
   create_table "list_items", :force => true do |t|
     t.string  "name"
@@ -35,8 +35,8 @@ ActiveRecord::Schema.define(:version => 20081205154536) do
     t.integer "year"
     t.integer "number"
     t.string  "section"
-    t.integer "rent_count"
-    t.integer "tarifa_id",  :default => 1
+    t.integer "tarifa_id", :default => 1
+    t.string  "comment"
   end
 
   create_table "rent_items", :force => true do |t|

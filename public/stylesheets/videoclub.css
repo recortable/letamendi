@@ -10,7 +10,7 @@ h2 {font-size: 150%;}
 div.actions { width: 100%; overflow: hidden; padding: 0.5em 0;}
 
 .actions .action {display: block; float: left; background-color: #CFCFCF; padding: 0.1em 0.5em;
-    margin: 0 0.3em 0 0; -moz-border-radius: 2%; font-weight: bold; }
+    margin: 0 0.3em 0.1em 0; -moz-border-radius: 2%; font-weight: bold; }
 .actions .action.green {color: #008000; }
 .actions  .action.red {color: #c00; }
 .actions .action.orange {color: #FF7A0F;}
@@ -29,6 +29,7 @@ tr.item.delayed {border-left-color: #9F0000;}
 td {padding: 0.1em 0.4em;}
 td.group {padding-top: 1em; font-weight: bold; font-family: serif; font-size: 120%;}
 td.actions {font-size: 80%;}
+td.title, td.name {font-weight: bold;}
 
 .section { width: 100%; overflow: hidden;}
 .main { float: left; width: 60%; margin-left: 5%; }
@@ -55,3 +56,8 @@ td.actions {font-size: 80%;}
 
 .rent {font-size: 150%; margin: 1em 1em 0 1em; background-color: #efefef; padding: 0.3em;}
 .rent input {border: 1px solid black; width: 4em;}
+
+form p {width: 100%; overflow: hidden; margin: 0.5em 0 0 0;}
+form p label {display: block; width: 12em; float: left; margin-right: 0.5em; margin-top: 0.2em;
+    text-align: right; font-weight: bold; }
+form p input[type=text] {border-bottom: 1px solid black; padding: 0; border-top: 0; border-left: 0; border-right: 0;}

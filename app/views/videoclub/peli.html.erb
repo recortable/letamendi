@@ -1,10 +1,10 @@
 
 <h1>(<%= @movie.number %>) <%= @movie.title %></h1>
-
+<%= content_tag(:div, @movie.comments, :class => 'important') if @movie.comments && !@movie.comments.empty? %>
 <div class="info">
   <p><label>Número:</label><%= @movie.number %></p>
   <p><label>Título:</label><%= @movie.title %></p>
-  <p><label>Tarifa:</label><%= @movie.tarifa_id %></p>
+  <p><label>Tarifa:</label><%= @movie.tarifa.name %></p>
   <div class="actions"><%= link_to 'modificar', {:action => 'edit_movie', :id => @member}, :class => 'action orange' %>
   </div>
 </div>

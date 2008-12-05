@@ -1,12 +1,13 @@
 <tr class="item <%= class_of_item item %> <%= cycle 'par', 'impar' %>">
   <td><%= fecha item.begins_at %></td>
+  <td>»</td><td> <%= fecha  item.closed_at ? item.closed_at : item.ends_at %></td>
   <% if !@hide_member -%>
     <td>[<%= item.member.number if item.member %>]</td>
-    <td><%= link_to_member item.member %></td>
+    <td class="name"><%= link_to_member item.member %></td>
   <% end -%>
   <% if !@hide_movie -%>
     <td>(<%= item.movie.number %>)</td>
-    <td><%= link_to_movie item.movie %></td>
+    <td class="title"><%= link_to_movie item.movie %></td>
   <% end -%>
   <%  if item.open? -%>
     <td class="actions">
