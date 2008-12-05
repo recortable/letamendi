@@ -9,11 +9,12 @@ h2 {font-size: 150%; margin-top: 2em;}
 
 div.actions { width: 100%; overflow: hidden; padding: 0.5em 0;}
 
-.actions .action {display: block; float: left; background-color: #CFCFCF; padding: 0.1em 0.5em;
-    margin: 0 0.3em 0.1em 0; -moz-border-radius: 2%; font-weight: bold; }
+.actions .action {display: block; float: left; background-color: #efefef; padding: 0.1em 0.5em;
+    margin: 0 0.3em 0.1em 0; -moz-border-radius: 2%; font-weight: bold; border: 1px solid #CFCFCF;}
 .actions .action.green {color: #008000; }
 .actions  .action.red {color: #c00; }
 .actions .action.orange {color: #FF7A0F;}
+.actions a.action:hover {background-color: #CFCFCF;}
 
 
 table {margin: 0.2em 0;}
@@ -21,7 +22,7 @@ table thead tr {font-weight: bold;}
 tr {border-top: 1px solid white; border-bottom: 1px solid gray;}
 tr.impar { background-color: #efefef; }
 tr.item {border-left: 1em solid black;}
-tr.item.closed {border-left-color: green;}
+tr.item.closed {border-left-color: gray;}
 tr.item.today {border-left-color: #66CC33;}
 tr.item.open {border-left-color: #8B00CF;}
 tr.item.waiting {border-left-color: #FDFF00;}

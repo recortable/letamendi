@@ -18,3 +18,13 @@
   </tbody>
 </table>
 <div class="actions"><%= link_to 'añadir tarifa', {:action => 'editar_tarifa', :id => nil}, :class => 'action green' %></div>
+
+<h2>Movimientos</h2>
+<table>
+  <tbody>
+    <tr><td class="group" colspan="3">Pendientes de cobrar!</td></tr>
+    <%= render :partial => 'pasta', :collection => Pasta.opened %>
+    <tr><td class="group" colspan="3">Cobrado hoy (total: <%=  precio @info.total_pasta %>€)</td></tr>
+    <%= render :partial => 'pasta', :collection => @info.pasta %>
+  </tbody>
+</table>

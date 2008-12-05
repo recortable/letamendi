@@ -1,6 +1,7 @@
 class VideoclubController < ApplicationController
 
   def index
+    @info = Informe.new(Time.now.to_db)
   end
 
   def ver
@@ -22,10 +23,10 @@ class VideoclubController < ApplicationController
     if movie.nil?
       flash[:error] = "La película con número #{params[:movie_number]} no existe."
     elsif movie.rented?
-      flash[:error] = "La peli '#{movie.title}' ya estaba alquilada"
+      flash[:error] = "La peli (#{movie.number}) '#{movie.title}' ya estaba alquilada"
     else
       member.rent movie
-      flash[:done] = "Peli '#{movie.title}' alquilada"
+      flash[:done] = "Peli (#{movie.number}) '#{movie.title}' alquilada"
     end
     redirect_to :action => 'socio', :id => member.number
   end
@@ -33,7 +34,7 @@ class VideoclubController < ApplicationController
   def alquiler_erroneo
     item = RentItem.find(params[:id])
     item.destroy
-    flash[:done] = "La peli '#{item.movie.title}' ya NO está alquilada"
+    flash[:done] = "La peli (#{item.movie.number}) '#{item.movie.title}' ya NO está alquilada"
     redirect_to :action => 'socio', :id => item.member.number
   end
 
@@ -47,7 +48,7 @@ class VideoclubController < ApplicationController
   def nodevolver
     item = RentItem.find(params[:id])
     item.reopen
-    flash[:notice] = "La peli '#{item.movie.title}' sigue devuelta"
+    flash[:notice] = "La peli (#{item.movie.number}) '#{item.movie.title}' sigue devuelta"
     redirect_to :action => 'socio', :id => item.member.number
   end
 
@@ -65,18 +66,37 @@ class VideoclubController < ApplicationController
     redirect_to :action => 'index'
   end
 
+  def comprar
+    member = Member.find params[:id]
+    member.buy(params[:description], params[:price])
+    redirect_to_member member
+  end
+
+  def des_comprar
+    pasta = Pasta.find params[:id]
+    pasta.destroy if pasta.item.nil?
+    redirect_to_member pasta.member
+  end
+
   def cobrar
     pasta = Pasta.find params[:id]
     pasta.close
-    flash[:done] = "Se han cobrado #{pasta.euros} del #{pasta.description}"
-    redirect_to :action => 'socio', :id => pasta.member.number
+    flash[:done] = "Se han cobrado #{pasta.euros}€ del #{pasta.description}"
+    redirect_to_member pasta.member
   end
 
   def des_cobrar
     pasta = Pasta.find params[:id]
     pasta.reopen
     flash[:done] = "Se han devuelto #{pasta.euros}€ del #{pasta.description}"
-    redirect_to :action => 'socio', :id => pasta.member.number
+    redirect_to_member pasta.member
+  end
+
+
+
+  private
+  def redirect_to_member(member)
+    redirect_to :action => 'socio', :id => member.number
   end
 
 end

@@ -1,6 +1,9 @@
 class Pasta < ActiveRecord::Base
   belongs_to :movie
   belongs_to :member
+  belongs_to :item, :class_name => 'RentItem', :foreign_key => 'item_id'
+  named_scope :opened, :conditions => {:closed_at => nil}
+  named_scope :closed_today, :conditions => {:closed_at => Time.now.to_db}
 
   def closed?
     !open?

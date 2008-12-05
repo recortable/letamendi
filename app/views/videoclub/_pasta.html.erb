@@ -2,8 +2,13 @@
   <td><%= fecha pasta.open_at %></td>
   <td><%= pasta.description %></td>
   <td><%= precio pasta.price %>€</td>
+    <% if @member -%>
   <td class="actions">
-    <%= link_to('cobrada', {:action => 'cobrar', :id => pasta}, :class=> 'action green') if pasta.open? %>
-    <%= link_to('me equivoqué, no está cobrada', {:action => 'des_cobrar', :id => pasta}, :class => 'action red') if pasta.closed? %>
+      <%= link_to('cobrada', {:action => 'cobrar', :id => pasta}, :class=> 'action green') if pasta.open? %>
+      <%= link_to('me equivoqué, no ha comprado esto', {:action => 'des_comprar', :id => pasta}, :class => 'action red') if pasta.open? && pasta.item.nil? %>
+      <%= link_to('me equivoqué, no está cobrada', {:action => 'des_cobrar', :id => pasta}, :class => 'action red') if pasta.closed? %>
   </td>
+    <% elsif -%>
+    <td><%= link_to_member pasta.member %></td>
+    <% end -%>
 </tr>

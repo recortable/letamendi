@@ -2,3 +2,17 @@ VIDEOCLUB DOCTOR LETAMENDI
 
 Rails app to admin the films of a videoclub
 
+#TODO
+- modificar la fecha de devolución en función de la tarifa
+- validar precio en client side
+- avisar si deja sin pagar (cuidado con los links de cobro!)
+- editar socios y pelis
+- añadir socios y pelis
+- infome mensual (cuánto dinero por día)
+- calcular deuda a partir del número de dias retrasados
+- cobrar todo
+- búsqueda
+-mostrar días que faltan en _item
+
+
+- autoreparación de nombres?
