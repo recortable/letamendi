@@ -22,7 +22,7 @@ class VideoclubController < ApplicationController
     if movie.nil?
       flash[:error] = "La película con número #{params[:movie_number]} no existe."
     elsif movie.rented?
-      flash[:error] = "La peli '#{movie.title}' está alquilada"
+      flash[:error] = "La peli '#{movie.title}' ya estaba alquilada"
     else
       member.rent movie
       flash[:done] = "Peli '#{movie.title}' alquilada"
@@ -33,7 +33,7 @@ class VideoclubController < ApplicationController
   def alquiler_erroneo
     item = RentItem.find(params[:id])
     item.destroy
-    flash[:notice] = "La peli '#{item.movie.title}' sigue alquilada."
+    flash[:done] = "La peli '#{item.movie.title}' ya NO está alquilada"
     redirect_to :action => 'socio', :id => item.member.number
   end
 
@@ -63,6 +63,20 @@ class VideoclubController < ApplicationController
       false[:error] = "Error guardando la tarifa. Inténtalo de nuevo"
     end
     redirect_to :action => 'index'
+  end
+
+  def cobrar
+    pasta = Pasta.find params[:id]
+    pasta.close
+    flash[:done] = "Se han cobrado #{pasta.euros} del #{pasta.description}"
+    redirect_to :action => 'socio', :id => pasta.member.number
+  end
+
+  def des_cobrar
+    pasta = Pasta.find params[:id]
+    pasta.reopen
+    flash[:done] = "Se han devuelto #{pasta.euros}€ del #{pasta.description}"
+    redirect_to :action => 'socio', :id => pasta.member.number
   end
 
 end

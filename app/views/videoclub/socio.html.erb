@@ -1,21 +1,3 @@
-<% content_for :header do -%>
-  <script type="text/javascript">
-    $("#movie_number").text("").focus();
-
-    $(function() {
-      $("#hide_info").click(function() {
-        $("#info_data").slideUp('slow', function () {$("#show_info").slideDown();});
-        return false;
-      });
-
-      $("#show_info").click(function() {
-        $("#show_info").slideUp(function() {$("#info_data").slideDown('slow');});
-        return false;
-      })
-    });
-  </script>
-<% end %>
-
 <h1>[<%= @member.number %>] <%= @member.name %></h1>
 <%= content_tag(:div, @member.comments, :class => 'important') if @member.comments && !@member.comments.empty? %>
 
@@ -35,14 +17,30 @@
 
 <div class="rent">
   <% form_tag(url_for({:controller => 'videoclub', :action => 'alquilar', :id => @member}), :method => 'get') do -%>
-    Alquilar película: <%= text_field_tag 'movie_number' %>
+    Alquilar película: <%= text_field_tag 'movie_number' %><%= submit_tag 'alquilar' %>
+  <% end -%>
+</div>
+<div class="buy">
+  <h1>Realizar una compra</h1>
+  <% form_tag(url_for({:controller => 'videoclub', :action => 'comprar', :id => @member}), :method => 'get') do -%>
+    Esto <%= text_field_tag 'description' %> vale <%= text_field_tag 'price' %> € <%= submit_tag 'comprar' %>
   <% end -%>
 </div>
 
+<%= content_tag(:div, "Está pendiente de ser cobrado", :class => 'important') if @member.pending_pasta? %>
 
+<h2>La pasta</h2>
+<table>
+  <tbody>
+    <tr><td class="group" colspan="3">Pendiente de cobrar (total: <%= precio @member.pending_total %>€)</td>
+    <td class="actions"><%= link_to('cobrar todo', {:action => 'cobrar_todo', :id => @member}, :class => 'action green') %></td></tr>
+    <%= render :partial => 'pasta', :collection => @member.pending_pasta %>
+    <tr><td class="group" colspan="4">Cobrado hoy</td></tr>
+    <%= render :partial => 'pasta', :collection => @member.closed_pasta_today %>
+  </tbody>
+</table>
 
-
-
+<h2>La salsa</h2>
 <table>
   <tbody>
     <% @hide_member = true -%>

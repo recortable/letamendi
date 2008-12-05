@@ -7,6 +7,7 @@ class RentItem < ActiveRecord::Base
   named_scope :waiting, :conditions => {:ends_at => Time.now.to_db, :closed_at => nil}
   named_scope :by_member, :order => 'member_id'
   named_scope :by_movie,  :order => 'movie_id'
+  has_one :pasta, :dependent => :destroy, :foreign_key => 'item_id'
 
   def close
     RentItem.transaction do

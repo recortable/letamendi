@@ -14,6 +14,12 @@ module VideoclubHelper
 #    return content_tag :div, "faltan #{-1 * days} dias", :class => 'open' if days < 0
   end
 
+  def class_of_pasta(pasta)
+    return 'closed' if pasta.closed?
+    return 'deuda' if pasta.price > 0
+    return 'pago' if pasta.price < 0
+  end
+
   def class_of_item(item)
     return 'today' if item.closed_today?
     return 'closed' if item.closed?

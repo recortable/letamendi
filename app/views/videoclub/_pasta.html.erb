@@ -1,0 +1,9 @@
+<tr class="pasta <%= class_of_pasta pasta %> <%= cycle 'par', 'impar' %>">
+  <td><%= fecha pasta.open_at %></td>
+  <td><%= pasta.description %></td>
+  <td><%= precio pasta.price %>€</td>
+  <td class="actions">
+    <%= link_to('cobrada', {:action => 'cobrar', :id => pasta}, :class=> 'action green') if pasta.open? %>
+    <%= link_to('me equivoqué, no está cobrada', {:action => 'des_cobrar', :id => pasta}, :class => 'action red') if pasta.closed? %>
+  </td>
+</tr>
