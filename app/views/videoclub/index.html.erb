@@ -3,3 +3,21 @@
 <div class="actions">
   <%= link_to 'alquileres', {:action => 'items'}, :class => 'action red' %>
 </div>
+
+<h2>Tarifas</h2>
+<table>
+  <thead>
+    <tr><td>Nombre</td><td>Precio</td><td>Días en alquiler</td><td>Precio retraso</td><td></td></tr>
+  </thead>
+  <tbody>
+    <% for tarifa in Tarifa.find :all -%>
+      <tr class="<%= cycle 'par', 'impar' %>">
+        <td><%= tarifa.name %></td>
+        <td><%= precio tarifa.price %> €</td>
+        <td><%= tarifa.days_to_rent %> días</td>
+        <td><%= precio tarifa.delay_price %></td>
+        <td class="actions"><%= link_to('modificar', {:action => 'cambiar_tarifa', :id => tarifa}, :class => 'action red') %></td>
+      </tr>
+    <% end -%>
+  </tbody>
+</table>

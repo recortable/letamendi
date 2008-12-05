@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20081203152316) do
+ActiveRecord::Schema.define(:version => 20081205154536) do
 
   create_table "list_items", :force => true do |t|
     t.string  "name"
@@ -36,6 +36,7 @@ ActiveRecord::Schema.define(:version => 20081203152316) do
     t.integer "number"
     t.string  "section"
     t.integer "rent_count"
+    t.integer "tarifa_id",  :default => 1
   end
 
   create_table "rent_items", :force => true do |t|
@@ -69,6 +70,16 @@ ActiveRecord::Schema.define(:version => 20081203152316) do
 
   create_table "schema_info", :id => false, :force => true do |t|
     t.integer "version"
+  end
+
+  create_table "tarifas", :force => true do |t|
+    t.string   "name"
+    t.integer  "price"
+    t.integer  "delay_price"
+    t.integer  "extend_price"
+    t.integer  "days_to_rent"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
 end

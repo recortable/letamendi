@@ -1,6 +1,14 @@
 
 <h1>(<%= @movie.number %>) <%= @movie.title %></h1>
 
+<div class="info">
+  <p><label>Número:</label><%= @movie.number %></p>
+  <p><label>Título:</label><%= @movie.title %></p>
+  <p><label>Tarifa:</label><%= @movie.tarifa_id %></p>
+  <div class="actions"><%= link_to 'modificar', {:action => 'edit_movie', :id => @member}, :class => 'action orange' %>
+  </div>
+</div>
+
 <% if @movie.open_item  %>
   <div class="important">
     Esta película está alquilada por <%= link_to_member @movie.open_item.member %>

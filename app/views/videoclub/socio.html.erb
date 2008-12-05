@@ -17,8 +17,21 @@
 <% end %>
 
 <h1>[<%= @member.number %>] <%= @member.name %></h1>
-
 <%= content_tag(:div, @member.comments, :class => 'important') if @member.comments && !@member.comments.empty? %>
+
+<div class="info">
+  <!--  <div class="actions"><%= empty_link 'mostrar datos', :show_info, 'action green' %></div> -->
+  <div id="info_data">
+    <p><label>Número:</label><%= @member.number %></p>
+    <p><label>Nombre:</label><%= @member.name %></p>
+    <p><label>Amig@s:</label><%= @member.friends %></p>
+    <p><label>Dirección:</label><%= @member.address %></p>
+    <p><label>Teléfono:</label><%= @member.telephone %></p>
+    <div class="actions"><%= link_to 'modificar', {:action => 'edit_member', :id => @member}, :class => 'action orange' %>
+      <!--      <%= empty_link 'ocultar datos', :hide_info, 'action green' %> -->
+    </div>
+  </div>
+</div>
 
 <div class="rent">
   <% form_tag(url_for({:controller => 'videoclub', :action => 'alquilar', :id => @member}), :method => 'get') do -%>
@@ -26,20 +39,6 @@
   <% end -%>
 </div>
 
-
-<div class="info">
-  <div class="actions"><%= empty_link 'mostrar datos', :show_info, 'action green' %></div>
-  <div id="info_data" style="display: none;">
-    <p><label>Número:</label><%= @member.number %></p>
-    <p><label>Nombre:</label><%= @member.name %></p>
-    <p><label>Amig@s:</label><%= @member.friends %></p>
-    <p><label>Dirección:</label><%= @member.address %></p>
-    <p><label>Teléfono:</label><%= @member.telephone %></p>
-    <div class="actions"><%= link_to 'modificar', {:action => 'edit_member', :id => @member}, :class => 'action orange' %>
-      <%= empty_link 'ocultar datos', :hide_info, 'action green' %>
-    </div>
-  </div>
-</div>
 
 
 

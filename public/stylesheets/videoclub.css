@@ -17,6 +17,7 @@ div.actions { width: 100%; overflow: hidden; padding: 0.5em 0;}
 
 
 table {margin: 1em 0;}
+table thead tr {font-weight: bold;}
 tr {border-top: 1px solid white; border-bottom: 1px solid gray;}
 tr.impar { background-color: #efefef; }
 tr.item {border-left: 1em solid black;}
@@ -47,11 +48,10 @@ td.actions {font-size: 80%;}
 .error {background-color: red;}
 .done {background-color: #5FFF0F;}
 
-.info {margin: 1em 2em; border: 1px solid #efefef; padding: 1em;}
+.info {margin: 1em 2em; border: 1px solid #efefef; padding: 0.5em 1em 0 1em;}
 .info p {width: 100%; overflow: hidden; padding-bottom: 0.2em;}
 .info label {font-weight: bold; margin-right: 1em;}
-
-#info_data .actions {margin-top: 1em;}
+.info .actions {font-size: 80%;}
 
 .rent {font-size: 150%; margin: 1em 1em 0 1em; background-color: #efefef; padding: 0.3em;}
 .rent input {border: 1px solid black; width: 4em;}

@@ -4,6 +4,10 @@ module VideoclubHelper
     encoded[6..7] + '/' + encoded[4..5] + '/' + encoded[0..3] unless encoded.nil?
   end
 
+  def precio(price)
+    price.nil? ? '0.00' : (price / 100).to_s
+  end
+
   def retraso(item)
     days = item.delay_in_days
     return content_tag :div, "#{days} dias de retraso", :class => 'delayed' if days > 0
