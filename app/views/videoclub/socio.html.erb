@@ -46,7 +46,9 @@
     <% @hide_member = true -%>
     <tr><td class="group" colspan="5">Pelis por devolver</td></tr>
     <%= render :partial => 'item', :collection => @member.open_items %>
+    <tr><td class="group" colspan="5">Pelis devueltas hoy</td></tr>
+    <%= render :partial => 'item', :collection => @member.closed_today_items %>
     <tr><td class="group" colspan="5">Pelis alquiladas anteriormente</td></tr>
-    <%= render :partial => 'item', :collection => @member.closed_items %>
+    <%= render :partial => 'item', :collection => @member.closed_not_today_items %>
   </tbody>
 </table>

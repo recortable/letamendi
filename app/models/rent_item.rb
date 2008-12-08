@@ -9,18 +9,6 @@ class RentItem < ActiveRecord::Base
   named_scope :by_movie,  :order => 'movie_id'
   has_one :pasta, :dependent => :destroy, :foreign_key => 'item_id'
 
-  def close
-    RentItem.transaction do
-      update_attribute(:closed_at, Time.now.to_db)
-    end
-  end
-
-  def reopen
-    RentItem.transaction do
-      update_attribute(:closed_at, nil)
-    end
-  end
-
   def open?
     closed_at == nil
   end

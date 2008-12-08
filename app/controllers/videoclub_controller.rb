@@ -40,14 +40,14 @@ class VideoclubController < ApplicationController
 
   def devolver
     item = RentItem.find(params[:id])
-    item.close
+    item.member.rent_back item
     flash[:done] = 'Peli devuelta'
     redirect_to :action => 'socio', :id => item.member.number
   end
 
   def nodevolver
     item = RentItem.find(params[:id])
-    item.reopen
+    item.member.undo_rent_back item
     flash[:notice] = "La peli (#{item.movie.number}) '#{item.movie.title}' sigue devuelta"
     redirect_to :action => 'socio', :id => item.member.number
   end

@@ -28,7 +28,7 @@ tr.item.open {border-left-color: #8B00CF;}
 tr.item.waiting {border-left-color: #FDFF00;}
 tr.item.delayed {border-left-color: #9F0000;}
 td {padding: 0.1em 0.4em;}
-td.group {padding-top: 0.5em; font-weight: bold; font-family: serif; font-size: 120%;}
+td.group {padding-top: 1em; font-weight: bold; font-family: serif; font-size: 120%;}
 td.actions {font-size: 80%;}
 td.title, td.name {font-weight: bold;}
 

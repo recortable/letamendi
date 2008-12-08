@@ -5,6 +5,10 @@ class Member < ActiveRecord::Base
     :conditions => ['closed_at IS NOT NULL'], :order => 'id DESC'
   has_many :open_items, :class_name => 'RentItem', :foreign_key => 'member_id',
     :conditions => ['closed_at IS NULL'], :order => 'id DESC'
+  has_many :closed_today_items, :class_name => 'RentItem', :foreign_key => 'member_id',
+    :conditions => ['closed_at IS NOT NULL AND closed_at = ?', Time.now.to_db], :order => 'id DESC'
+  has_many :closed_not_today_items, :class_name => 'RentItem', :foreign_key => 'member_id',
+    :conditions => ['closed_at IS NOT NULL AND closed_at <> ?', Time.now.to_db], :order => 'id DESC'
 
   has_many :pastas
   has_many :pending_pasta, :class_name => 'Pasta', :foreign_key => 'member_id',
@@ -32,6 +36,28 @@ class Member < ActiveRecord::Base
         pasta.description = "Alquiler de '#{movie.title}' realizado por '#{self.name}"
         pasta.save!
       end
+    end
+  end
+
+  def rent_back(item)
+    Member.transaction do
+      delay = item.delay_in_days
+      if delay > 0
+        pasta = Pasta.new(:member_id => self.id, :movie_id => item.movie.id, :item_id => item.id)
+        pasta.open_at = Time.now.to_db
+        pasta.price = item.movie.tarifa.delay_price.to_i * delay
+        pasta.description = "Retraso de #{delay} dias al devolver '#{item.movie.title}'"
+        pasta.save!
+      end
+      item.update_attribute(:closed_at, Time.now.to_db)
+    end
+  end
+
+  def undo_rent_back(item)
+    Member.transaction do
+      pasta = Pasta.find_by_item_id(item.id)
+      pasta.destroy unless pasta.nil?
+      item.update_attribute(:closed_at, nil)
     end
   end
 

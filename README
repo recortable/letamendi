@@ -9,12 +9,12 @@ Rails app to admin the films of a videoclub
 - editar socios y pelis
 - añadir socios y pelis
 - infome mensual (cuánto dinero por día)
-- calcular deuda a partir del número de dias retrasados
 - cobrar todo
 -mostrar días que faltan en _item
 - autoreparación de nombres?
 
 #DONE
 - búsqueda
+- calcular deuda a partir del número de dias retrasados
 
 
