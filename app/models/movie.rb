@@ -7,6 +7,11 @@ class Movie < ActiveRecord::Base
   belongs_to :tarifa
   has_many :pastas
 
+  def self.new_with_number
+    last = Movie.find(:first, :order => 'number DESC')
+    Movie.new(:number => last.number + 1)
+  end
+
   def rented?
     !open_item.nil?
   end

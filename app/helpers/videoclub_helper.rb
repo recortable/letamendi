@@ -16,6 +16,7 @@ module VideoclubHelper
     days = item.delay_in_days
     return content_tag :div, "#{days} #{say_dia days} de retraso", :class => 'delayed' if days > 0
     return content_tag :div, "falta #{-1 * days} #{say_dia days}", :class => 'open' if days < 0
+    return content_tag :div, "hoy", :class => 'waiting' if days == 0
   end
 
   def say_dia(days)
@@ -33,6 +34,7 @@ module VideoclubHelper
     return 'today' if item.closed_today?
     return 'closed' if item.closed?
     return 'delayed' if item.delayed?
+    return 'waiting' if item.waiting?
     return 'open' if item.open?
   end
 

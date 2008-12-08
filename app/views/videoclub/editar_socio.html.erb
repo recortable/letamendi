@@ -1,0 +1,14 @@
+<h1><%= @member.new_record? ? 'Añadir socia o socio' : "Editar datos de '#{@member.name}'" %></h1>
+
+<div class="formulario">
+  <% form_tag :action => 'guardar_socio', :id => @member  do -%>
+    <p><label>Número:</label><%= @member.number %><%= hidden_field_tag 'member[number]', @member.number %></p>
+    <p><label>Nombre:</label><%= text_field_tag 'member[name]', @member.name %></p>
+    <p><label>Amiguetes:</label><%= text_field_tag 'member[friends]', @member.friends %></p>
+    <p><label>Dirección:</label><%= text_field_tag 'member[address]', @member.address %></p>
+    <p><label>Email:</label><%= text_field_tag 'member[email]', @member.email %></p>
+    <p><label>Teléfono(s):</label><%= text_field_tag 'member[telephone]', @member.telephone %> </p>
+    <p><label>Comentarios:</label><%= text_field_tag 'member[comments]', @member.comments %> </p>
+    <p><label>&nbsp;</label><%= submit_tag 'guardar' %></p>
+  <% end -%>
+</div>

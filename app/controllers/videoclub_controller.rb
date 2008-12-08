@@ -13,8 +13,36 @@ class VideoclubController < ApplicationController
     @member = Member.find_by_number(params[:id])
   end
 
+  def editar_socio
+    @member = params[:id] ? Member.find(params[:id]) : Member.new_with_number
+  end
+
+  def guardar_socio
+    member = params[:id] ? Member.find(params[:id]) : Member.new
+    if member.update_attributes params[:member]
+      flash[:done] = "Datos de '#{member.name}' guardados."
+    else
+      false[:error] = "Error guardando los datos de socia. Inténtalo de nuevo"
+    end
+    redirect_to_member(member);
+  end
+
   def peli
     @movie = Movie.find_by_number(params[:id])
+  end
+
+  def editar_peli
+    @movie = params[:id] ? Movie.find(params[:id]) : Movie.new_with_number
+  end
+
+  def guardar_peli
+    movie = params[:id] ? Movie.find(params[:id]) : Movie.new
+    if movie.update_attributes params[:movie]
+      flash[:done] = "Datos de '#{movie.title}' guardados."
+    else
+      false[:error] = "Error guardando los datos de la peli. Inténtalo de nuevo"
+    end
+    redirect_to_movie movie
   end
 
   def alquilar
@@ -28,28 +56,28 @@ class VideoclubController < ApplicationController
       member.rent movie
       flash[:done] = "Peli (#{movie.number}) '#{movie.title}' alquilada"
     end
-    redirect_to :action => 'socio', :id => member.number
+    redirect_to_member member
   end
 
   def alquiler_erroneo
     item = RentItem.find(params[:id])
     item.member.undo_rent item
     flash[:done] = "La peli (#{item.movie.number}) '#{item.movie.title}' ya NO está alquilada"
-    redirect_to :action => 'socio', :id => item.member.number
+    redirect_to_member item.member
   end
 
   def devolver
     item = RentItem.find(params[:id])
     item.member.rent_back item
     flash[:done] = 'Peli devuelta'
-    redirect_to :action => 'socio', :id => item.member.number
+    redirect_to_member item.member
   end
 
   def nodevolver
     item = RentItem.find(params[:id])
     item.member.undo_rent_back item
     flash[:notice] = "La peli (#{item.movie.number}) '#{item.movie.title}' sigue devuelta"
-    redirect_to :action => 'socio', :id => item.member.number
+    redirect_to_member item.member
   end
 
   def editar_tarifa
@@ -102,6 +130,10 @@ class VideoclubController < ApplicationController
   private
   def redirect_to_member(member)
     redirect_to :action => 'socio', :id => member.number
+  end
+
+  def redirect_to_movie(movie)
+    redirect_to :action => 'peli', :id => movie.number
   end
 
 end

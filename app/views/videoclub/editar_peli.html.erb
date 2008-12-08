@@ -1,0 +1,16 @@
+<h1><%= @movie.new_record? ? 'Añadir peli' : "Editar datos de la peli '#{@movie.title}'" %></h1>
+
+<div class="formulario">
+  <% form_tag :action => 'guardar_peli', :id => @movie  do -%>
+    <p><label>Número:</label><%= @movie.number %><%= hidden_field_tag 'movie[number]', @movie.number %></p>
+    <p><label>Titulo:</label><%= text_field_tag 'movie[title]', @movie.title %></p>
+    <p><label>Tarifa:</label><%= collection_select :movie, :tarifa_id, Tarifa.find(:all), :id, :name %></p>
+    <p><label>Director:</label><%= text_field_tag 'movie[director]', @movie.director %></p>
+    <p><label>Género:</label><%= text_field_tag 'movie[genre]', @movie.genre %></p>
+    <p><label>Intérpretes:</label><%= text_field_tag 'movie[crew]', @movie.crew %></p>
+    <p><label>Año:</label><%= text_field_tag 'movie[year]', @movie.year %> </p>
+    <p><label>Sección:</label><%= text_field_tag 'movie[section]', @movie.section %> </p>
+    <p><label>Comentarios:</label><%= text_field_tag 'movie[comments]', @movie.comments %> </p>
+    <p><label>&nbsp;</label><%= submit_tag 'guardar' %></p>
+  <% end -%>
+</div>

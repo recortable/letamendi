@@ -1,6 +1,7 @@
 <h1>El gabinete </h1>
 
 <h2>Tarifas</h2>
+<div class="actions"><%= link_to 'añadir tarifa', {:action => 'editar_tarifa', :id => nil}, :class => 'action green' %></div>
 <table>
   <thead>
     <tr><td>Nombre</td><td>Precio</td><td>Días en alquiler</td><td>Precio retraso</td><td></td></tr>
@@ -17,9 +18,12 @@
     <% end -%>
   </tbody>
 </table>
-<div class="actions"><%= link_to 'añadir tarifa', {:action => 'editar_tarifa', :id => nil}, :class => 'action green' %></div>
 
 <h2>Movimientos</h2>
+<div class="actions">
+  <%= link_to 'apuntar un gasto', {:action => 'socio', :id => 12}, :class => 'action green' %>
+</div>
+
 <table>
   <tbody>
     <tr><td class="group" colspan="3">Pendientes de cobrar!</td></tr>

@@ -1,10 +1,11 @@
 <h1><%= @tarifa.new_record? ? 'Crear nueva tarifa' : "Editar tarifa '#{@tarifa.name}'" %></h1>
-<br/>
 
-<% form_tag :action => 'guardar_tarifa', :id => @tarifa  do -%>
-  <p><label>Nombre:</label><%= text_field_tag 'tarifa[name]', @tarifa.name %></p>
-  <p><label>Precio:</label><%= text_field_tag 'tarifa[price]', @tarifa.price %>€</p>
-  <p><label>Precio retraso:</label><%= text_field_tag 'tarifa[delay_price]', @tarifa.delay_price %>€</p>
-  <p><label>Días en alquiler:</label><%= text_field_tag 'tarifa[days_to_rent]', @tarifa.days_to_rent %> días</p>
-  <p><label>&nbsp;</label><%= submit_tag 'guardar' %></p>
-<% end -%>
+<div class="formulario">
+  <% form_tag({ :action => 'guardar_tarifa', :id => @tarifa }, :class => 'small_fields') do -%>
+    <p><label>Nombre:</label><%= text_field_tag 'tarifa[name]', @tarifa.name %></p>
+    <p><label>Precio:</label><%= text_field_tag 'tarifa[price]', @tarifa.price %>€</p>
+    <p><label>Precio retraso:</label><%= text_field_tag 'tarifa[delay_price]', @tarifa.delay_price %>€</p>
+    <p><label>Días en alquiler:</label><%= text_field_tag 'tarifa[days_to_rent]', @tarifa.days_to_rent %> días</p>
+    <p><label>&nbsp;</label><%= submit_tag 'guardar' %></p>
+  <% end -%>
+</div>

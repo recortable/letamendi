@@ -13,7 +13,8 @@
     <p><label>Amig@s:</label><%= @member.friends %></p>
     <p><label>Dirección:</label><%= @member.address %></p>
     <p><label>Teléfono:</label><%= @member.telephone %></p>
-    <div class="actions"><%= link_to 'modificar', {:action => 'edit_member', :id => @member}, :class => 'action orange' %>
+    <p><label>Email:</label><%= @member.email %></p>
+    <div class="actions"><%= link_to 'modificar', {:action => 'editar_socio', :id => @member}, :class => 'action orange' %>
       <!--      <%= empty_link 'ocultar datos', :hide_info, 'action green' %> -->
     </div>
   </div>

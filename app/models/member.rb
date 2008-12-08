@@ -4,7 +4,7 @@ class Member < ActiveRecord::Base
   has_many :closed_items, :class_name => 'RentItem', :foreign_key => 'member_id',
     :conditions => ['closed_at IS NOT NULL'], :order => 'id DESC'
   has_many :open_items, :class_name => 'RentItem', :foreign_key => 'member_id',
-    :conditions => ['closed_at IS NULL'], :order => 'id DESC'
+    :conditions => ['closed_at IS NULL'], :order => 'ends_at'
   has_many :closed_today_items, :class_name => 'RentItem', :foreign_key => 'member_id',
     :conditions => ['closed_at IS NOT NULL AND closed_at = ?', Time.now.to_db], :order => 'id DESC'
   has_many :closed_not_today_items, :class_name => 'RentItem', :foreign_key => 'member_id',
@@ -18,7 +18,12 @@ class Member < ActiveRecord::Base
   has_many :closed_pasta_today, :class_name => 'Pasta', :foreign_key => 'member_id',
     :conditions => ['closed_at IS NOT NULL AND closed_at = ?', Time.now.to_db], :order => 'id DESC'
 
-  
+  def self.new_with_number
+    last = Member.find(:first, :order => 'number DESC')
+    Member.new(:number => last.number + 1)
+  end
+
+
   def items
     RentItem.find(:all, :include => [:movie, :member], :conditions => ['rent_items.member_id = ?', self.id] )
   end

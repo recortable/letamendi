@@ -29,6 +29,10 @@ class RentItem < ActiveRecord::Base
     open? && ends_at < Time.now.to_db
   end
 
+  def waiting?
+    ends_at == Time.now.to_db
+  end
+
   def delay_in_days
     @delay_in_days ||= distancia(Time.from_db(ends_at), Time.now)
   end
