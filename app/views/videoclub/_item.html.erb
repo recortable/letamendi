@@ -14,7 +14,7 @@
       <%= link_to( 'me equivoqué, no quería alquilar esta', {:action => 'alquiler_erroneo', :id => item}, :class => 'action red') if item.open_today? && @member %>
       <%= link_to 'devolver', {:action => 'devolver', :id => item}, :class => 'action green' %>
     </td>
-    <td><%= retraso item %></td>
+    <td class="rent_days"><%= retraso item %></td>
   <% elsif item.closed_today? -%>
     <td class="actions"><%= link_to 'me equivoqué, sigue alquilada', {:action => 'nodevolver', :id => item}, :class => 'action red' %></td>
     <td />

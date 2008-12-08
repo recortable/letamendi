@@ -26,9 +26,10 @@ class Member < ActiveRecord::Base
   def rent(movie)
     if !movie.rented?
       Member.transaction do
+        days = movie.tarifa.days_to_rent
         item = RentItem.new(:member_id => self.id, :movie_id => movie.id)
         item.begins_at = Time.now.to_db
-        item.ends_at = (Time.now + 1.day).to_db
+        item.ends_at = (Time.now + days.day).to_db
         item.save!
         pasta = Pasta.new(:member_id => self.id, :movie_id => movie.id, :item_id => item.id)
         pasta.open_at = item.begins_at
@@ -36,6 +37,12 @@ class Member < ActiveRecord::Base
         pasta.description = "Alquiler de '#{movie.title}' realizado por '#{self.name}"
         pasta.save!
       end
+    end
+  end
+
+  def undo_rent(item)
+    Member.transaction do
+      item.destroy
     end
   end
 
@@ -66,7 +73,7 @@ class Member < ActiveRecord::Base
   end
 
   def pending_total
-    pending_pasta.inject(0) {|sum, pasta| sum + pasta.price}
+    pending_pasta.inject(0) {|sum, pasta| sum + pasta.price.to_i unless pasta.nil?}
   end
 
   def buy(description, price)

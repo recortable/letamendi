@@ -1,5 +1,9 @@
 module VideoclubHelper
 
+  def title(page_title)
+    content_for(:title) { page_title }
+  end
+
   def fecha(encoded)
     encoded[6..7] + '/' + encoded[4..5] + '/' + encoded[0..3] unless encoded.nil?
   end
@@ -10,11 +14,16 @@ module VideoclubHelper
 
   def retraso(item)
     days = item.delay_in_days
-    return content_tag :div, "#{days} dias de retraso", :class => 'delayed' if days > 0
-#    return content_tag :div, "faltan #{-1 * days} dias", :class => 'open' if days < 0
+    return content_tag :div, "#{days} #{say_dia days} de retraso", :class => 'delayed' if days > 0
+    return content_tag :div, "falta #{-1 * days} #{say_dia days}", :class => 'open' if days < 0
+  end
+
+  def say_dia(days)
+    days == -1 || days == 1 ? 'dia' : 'dias'
   end
 
   def class_of_pasta(pasta)
+    return 'error' if pasta.nil? || pasta.price.nil?
     return 'closed' if pasta.closed?
     return 'deuda' if pasta.price > 0
     return 'pago' if pasta.price < 0

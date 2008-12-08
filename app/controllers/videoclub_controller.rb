@@ -33,7 +33,7 @@ class VideoclubController < ApplicationController
 
   def alquiler_erroneo
     item = RentItem.find(params[:id])
-    item.destroy
+    item.member.undo_rent item
     flash[:done] = "La peli (#{item.movie.number}) '#{item.movie.title}' ya NO está alquilada"
     redirect_to :action => 'socio', :id => item.member.number
   end

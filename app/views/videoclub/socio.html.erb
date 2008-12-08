@@ -1,3 +1,7 @@
+
+
+<% title(@member.name) -%>
+
 <h1>[<%= @member.number %>] <%= @member.name %></h1>
 <%= content_tag(:div, @member.comments, :class => 'important') if @member.comments && !@member.comments.empty? %>
 
@@ -52,3 +56,41 @@
     <%= render :partial => 'item', :collection => @member.closed_not_today_items %>
   </tbody>
 </table>
+
+
+
+
+<% content_for :header do  -%>
+  <script type="text/javascript">
+    $(function() {
+      $(".buy form").submit(function() {
+        var valid = true;
+        if (valid) {
+          $("#description").validate("not_empty", function() {
+            alert("Debes especificar qué quiere comprar!");
+            valid = false;
+          });
+        }
+        if (valid) {
+          $("#price").validate("not_empty", function() {
+            alert("Debes especificar el precio de lo que quiere comprar!");
+            valid = false;
+          });
+        }
+        if (valid) {
+          $("#price").validate("integer", function() {
+            alert("El precio no debe tener ni comas ni puntos. 125 significa 1,25€");
+            valid = false;
+          });
+        }
+        if (valid) {
+          $("#price").validate("price", function() {
+            alert("Me temo que has puesto un precio regalao! (tiene que ser mayor que 60, es decir, 0,6€)");
+            valid = false;
+          });
+        }
+        return valid;
+      });
+    });
+  </script>
+<% end -%>
