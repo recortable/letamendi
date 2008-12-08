@@ -11,8 +11,10 @@ Rails app to admin the films of a videoclub
 - infome mensual (cuánto dinero por día)
 - calcular deuda a partir del número de dias retrasados
 - cobrar todo
-- búsqueda
 -mostrar días que faltan en _item
-
-
 - autoreparación de nombres?
+
+#DONE
+- búsqueda
+
+

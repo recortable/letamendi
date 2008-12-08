@@ -92,7 +92,12 @@ class VideoclubController < ApplicationController
     redirect_to_member pasta.member
   end
 
-
+  def search
+    @term = params[:term]
+    @members = Member.search(@term)
+    @movies = Movie.search(@term)
+    render :action => 'search', :layout => false
+  end
 
   private
   def redirect_to_member(member)

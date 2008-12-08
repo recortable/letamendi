@@ -39,7 +39,14 @@ tr.pasta.pago {border-left-color: #00ECFF;}
 
 .section { width: 100%; overflow: hidden;}
 .main { float: left; width: 60%; margin-left: 5%; }
-.search {float: left; width: 35%; }
+.search {float: left; width: 30%; }
+
+#search_controls input[type=text] {border: 1px solid black; padding: 2px;}
+#search_controls form {float: left; margin-top: 60px;}
+#search_error {color: red;}
+#search_results { padding-left: 1em;}
+
+#footer {background-color: #000; color: white; height: 2em; margin-top: 2em;}
 
 .important { background-color: red; color: white; font-size: 120%; padding: 1em; margin: 1em 0;
     border: 1px solid #c00; font-weight: bold;}

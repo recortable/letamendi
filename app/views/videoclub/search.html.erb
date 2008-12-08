@@ -1,0 +1,16 @@
+<div class="actions"><%= link_to_function 'limpiar', '$("#search_results").slideUp("slow");', :class =>'action' %></div>
+<h1>Resultados de buscar '<%= @term %>'</h1>
+<table>
+  <tbody>
+    <tr><td class="group" colspan="2" >Socias y socios</td></tr>
+    <% for member in @members -%>
+      <tr class="member_search <%= cycle 'par', 'impar' %>"><td>[<%= member.number %>]</td>
+      <td><%= link_to_member member %></td></tr>
+    <% end -%>
+    <tr><td class="group" colspan="2" >Películas</td></tr>
+    <% for movie in @movies -%>
+      <tr class="movie_search <%= cycle 'par', 'impar' %>"><td>(<%= movie.number %>)</td>
+      <td><%= link_to_movie movie %></td></tr>
+    <% end -%>
+  </tbody>
+</table>
