@@ -120,6 +120,13 @@ class VideoclubController < ApplicationController
     redirect_to_member pasta.member
   end
 
+  def cobrar_todo
+    member = Member.find(params[:id])
+    member.pending_pasta.each {|pasta| pasta.close}
+    flash[:done] = "Se cobraron todas las deudas de #{member.name}"
+    redirect_to_member member
+  end
+
   def search
     @term = params[:term]
     @members = Member.search(@term)

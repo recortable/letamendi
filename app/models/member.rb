@@ -78,7 +78,7 @@ class Member < ActiveRecord::Base
   end
 
   def pending_total
-    pending_pasta.inject(0) {|sum, pasta| sum + pasta.price.to_i unless pasta.nil?}
+    @pending_total ||= pending_pasta.inject(0) {|sum, pasta| sum + pasta.price.to_i unless pasta.nil?}
   end
 
   def buy(description, price)

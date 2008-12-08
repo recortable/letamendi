@@ -9,10 +9,10 @@
   <tbody>
     <% @hide_movie = true %>
     <tr><td colspan="4" class="group">Alquilaron hoy</td></tr>
-    <%= render :partial => 'item', :collection => RentItem.open_today.by_member %>
+    <%= render :partial => 'item', :collection => RentItem.open_today %>
     <tr><td colspan="4" class="group">Deberían devolver hoy</td></tr>
     <%= render :partial => 'item', :collection => RentItem.waiting.by_member %>
     <tr><td colspan="4" class="group">Con retraso</td></tr>
-    <%= render :partial => 'item', :collection => RentItem.delayed.by_member %>
+    <%= render :partial => 'item', :collection => RentItem.delayed.by_end_date %>
   </tbody>
 </table>

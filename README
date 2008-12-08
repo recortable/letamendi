@@ -5,11 +5,11 @@ Rails app to admin the films of a videoclub
 #TODO
 - avisar si deja sin pagar (cuidado con los links de cobro!)
 - infome mensual (cuánto dinero por día)
-- cobrar todo
 - autoreparación de nombres?
-- FOCUS!
 
 #DONE
+- FOCUS!
+- cobrar todo
 - editar y añadir pelis
 - editar y añadir socios
 -favicon

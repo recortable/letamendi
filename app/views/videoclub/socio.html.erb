@@ -38,7 +38,8 @@
 <table>
   <tbody>
     <tr><td class="group" colspan="3">Pendiente de cobrar (total: <%= precio @member.pending_total %>€)</td>
-    <td class="actions"><%= link_to('cobrar todo', {:action => 'cobrar_todo', :id => @member}, :class => 'action green') %></td></tr>
+      <td class="actions"><%= link_to('cobrar todo', {:action => 'cobrar_todo', :id => @member}, :class => 'action green',
+      :confirm => "Cobrar todo. TOTAL: #{precio @member.pending_total}€ ¿Seguro?") if @member.pending_total != 0 %></td></tr>
     <%= render :partial => 'pasta', :collection => @member.pending_pasta %>
     <tr><td class="group" colspan="4">Cobrado hoy</td></tr>
     <%= render :partial => 'pasta', :collection => @member.closed_pasta_today %>
@@ -64,6 +65,8 @@
 <% content_for :header do  -%>
   <script type="text/javascript">
     $(function() {
+      $('#movie_number').focus();
+
       $(".buy form").submit(function() {
         var valid = true;
         if (valid) {

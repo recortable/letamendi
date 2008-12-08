@@ -13,6 +13,6 @@
     <tr><td class="group" colspan="3">Deberían volver hoy</td></tr>
     <%= render :partial => 'item', :collection => RentItem.waiting.by_movie %>
     <tr><td class="group" colspan="3">Con retraso</td></tr>
-    <%= render :partial => 'item', :collection => RentItem.delayed.by_movie %>
+    <%= render :partial => 'item', :collection => RentItem.delayed.by_end_date %>
   </tbody>
 </table>

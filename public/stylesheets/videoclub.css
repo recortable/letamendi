@@ -9,6 +9,7 @@ h1, h2 {margin-top: 1em; font-family: serif; border-bottom: 1px solid #efefef; l
 h1 {font-size: 200%;}
 h2 {font-size: 150%; margin-top: 2em;}
 
+
 div.actions { width: 100%; overflow: hidden; padding: 0.5em 0;}
 
 .actions .action {display: block; float: left; background-color: #efefef; padding: 0.1em 0.5em;
@@ -72,7 +73,8 @@ tr.pasta.pago {border-left-color: #00ECFF;}
 .info .actions {font-size: 80%;}
 
 .rent {font-size: 150%; margin: 1em 1em 0 1em; background-color: #efefef; padding: 0.3em;}
-.rent input[type=text] {border: 1px solid black; width: 4em;}
+.rent input[type=text] {border: 1px solid black; width: 4em; padding: 2px;}
+.rent input[type=text]:focus {border: 1px solid #c00;}
 .rent input[type=submit] {margin-left: 1em;font-size: 90%;}
 
 .buy { margin: 1.5em 1.5em 0 1.5em; background-color: #efefef; padding: 0.45em;}
