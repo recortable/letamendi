@@ -1,6 +1,6 @@
 class RepairClosedRents < ActiveRecord::Migration
   def self.up
-    closed = Rent.find(:all, :conditions => 'closed = 1')
+    closed = Rent.find(:all, :conditions => ['closed = ?', true])
     closed.each do |r|
       end_date = r.end_date
       end_day = Time.utc(end_date.year, end_date.month, end_date.day)
