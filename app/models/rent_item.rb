@@ -3,7 +3,7 @@ class RentItem < ActiveRecord::Base
   belongs_to :member
   named_scope :open, :conditions => {:closed_at => nil}
   named_scope :open_today, :conditions => {:begins_at =>   Time.now.to_db}
-  named_scope :delayed, :conditions => ['ends_at < ? && closed_at IS NULL', Time.now.to_db]
+  named_scope :delayed, :conditions => ['ends_at < ? AND closed_at IS NULL', Time.now.to_db]
   named_scope :waiting, :conditions => {:ends_at => Time.now.to_db, :closed_at => nil}
   named_scope :by_member, :order => 'member_id'
   named_scope :by_movie,  :order => 'movie_id'
