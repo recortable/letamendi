@@ -46,11 +46,14 @@
         <%= link_to image_tag('alquileres.png'), :action => 'index' %>
       </div>
       <div id="search_controls" class="search">
-        <div id="search_error" style="display:none;"></div>
+        <div id="today">hoy es <%= @today.fecha %></div>
+        <div id="search_messages"><div id="search_error" style=""></div></div>
+        <div id="search_panel">
         <% form_tag({ :controller => 'videoclub', :action => 'buscar'}, :id => 'search_form') do -%>
           <%= text_field_tag 'term' %>
           <%= submit_tag 'buscar', :id => 'do_search' %>
         <% end -%>
+        </div>
       </div>
     </div>
 

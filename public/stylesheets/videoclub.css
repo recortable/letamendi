@@ -46,9 +46,13 @@ tr.pasta.pago {border-left-color: #00ECFF;}
 .main { float: left; width: 60%; margin-left: 5%; }
 .search {float: left; width: 30%; }
 
+#search_panel {text-align: right; }
+#search_messages {height: 2em; text-align: right;}
+#today { font-size: 200%; color: white; text-align: right;}
+
 #search_controls input[type=text] {border: 1px solid black; padding: 2px;}
-#search_controls form {float: left; margin-top: 60px;}
-#search_error {color: red;}
+#search_controls form {margin-top: 8px;}
+#search_error {color: red; margin-top: 5px;}
 #search_results { padding-left: 1em;}
 
 #footer {background-color: #000; color: gray;  padding: 0.5em 0; text-align: center;}

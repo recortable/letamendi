@@ -49,4 +49,17 @@ module VideoclubHelper
   def empty_link(label, id, html_class = '')
     '<a href="" onclick="javascript:void(0);" id="' + id.to_s + '" class="' + html_class + '" />' + label + '</a>'
   end
+
+  MESES = %w(enero febrero marzo abril mayo junio julio agosto septiembre octubre noviembre diciembre) 
+
+  def select_day
+    select_date Time.new,  :order => [:day, :month, :year],
+    :date_separator => 'de ', :start_year => 2007, :use_month_names => MESES
+  end
+
+  def select_month
+    select_date Time.new,  :order => [:day, :month, :year],
+     :start_year => 2007, :discard_day => true,  :use_month_names => MESES
+  end
+
 end

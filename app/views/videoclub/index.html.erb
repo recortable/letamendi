@@ -1,20 +1,13 @@
 <h1>El gabinete </h1>
 
-<h2>Informes</h2>
 <h3>Informe diario:</h3>
-<% form_tag({:action => 'informe_diario'}) do -%>
-    <%= select_date Time.new,  :order => [:day, :month, :year], 
-    :date_separator => 'de ', :start_year => 2007,
-    :use_month_names => %w(enero febrero marzo abril mayo junio julio agosto septiembre octubre noviembre diciembre) %>
-    <%= submit_tag 'ver informe diario' %>
+<% form_tag({:action => 'daily_report'}) do -%>
+    <%= select_day %> <%= submit_tag 'ver informe diario' %>
 <% end -%>
 
 <h3>Informe mensual:</h3>
-<% form_tag({:action => 'informe_mensual'}) do -%>
-    <%= select_date Time.new,  :order => [:day, :month, :year],
-     :start_year => 2007, :discard_day => true,
-    :use_month_names => %w(enero febrero marzo abril mayo junio julio agosto septiembre octubre noviembre diciembre) %>
-    <%= submit_tag 'ver informe mensual' %>
+<% form_tag({:action => 'month_report'}) do -%>
+    <%= select_month %> <%= submit_tag 'ver informe mensual' %>
 <% end -%>
 
 

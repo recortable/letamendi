@@ -5,7 +5,7 @@ class InformeMensual
 
   MES = %w{nada enero febrero marzo abril mayo junio julio agosto septiembre octubre noviembre diciembre}
 
-  def initialize(mes, anyo)
+  def initialize(anyo, mes)
     @mes = mes.to_i
     @anyo = anyo.to_i
   end

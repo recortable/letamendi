@@ -1,5 +1,7 @@
 class VideoclubController < ApplicationController
 
+  before_filter :today
+
   def index
     @info = Informe.new(Time.now.to_db)
   end
@@ -134,14 +136,22 @@ class VideoclubController < ApplicationController
     render :action => 'search', :layout => false
   end
 
-  def informe_diario
+  def daily_report
     date = params[:date]
-    fecha = Time.utc(date[:year], date[:month], date[:day])
+    redirect_to :action => 'informe_diario', :year => date[:year], :month => date[:month], :day => date[:day]
+  end
+
+  def informe_diario
+    fecha = Time.utc(params[:year], params[:month], params[:day])
     @info = Informe.new(fecha.to_db)
   end
 
+  def month_report
+    redirect_to :action => 'informe_mensual', :year => params[:date][:year], :month => params[:date][:month]
+  end
+
   def informe_mensual
-    @info = InformeMensual.new(params[:date][:month], params[:date][:year])
+    @info = InformeMensual.new(params[:year], params[:month])
   end
 
 
@@ -152,6 +162,10 @@ class VideoclubController < ApplicationController
 
   def redirect_to_movie(movie)
     redirect_to :action => 'peli', :id => movie.number
+  end
+
+  def today
+    @today = Time.now
   end
 
 
