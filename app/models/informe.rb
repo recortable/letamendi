@@ -4,6 +4,14 @@ class Informe
     @dbtime = dbtime
   end
 
+  def fecha
+    @dbtime
+  end
+
+  def item_count
+    @item_count ||= RentItem.count(:all, :conditions => ['begins_at = ?', @dbtime])
+  end
+
   def pasta
     @pasta ||= Pasta.find_all_by_closed_at(@dbtime)
   end

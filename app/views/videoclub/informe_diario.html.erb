@@ -1,0 +1,13 @@
+<h1>Informe diario <%= fecha @info.fecha %> </h1>
+
+<h3>Número de películas alquiladas: <%= @info.item_count %></h3>
+
+<h2>Dinerillos</h2>
+<h3>Cobrado hoy: <%=  precio @info.total_pasta %>€</h3>
+
+<table>
+  <tbody>
+    <tr><td class="group" colspan="3">Se ha cobrado por</td></tr>
+    <%= render :partial => 'pasta', :collection => @info.pasta %>
+  </tbody>
+</table>

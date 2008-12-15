@@ -1,0 +1,17 @@
+<h1>Informe mensual para <%= @info.el_mes %> del <%= @info.anyo %></h1>
+
+<table>
+  <tbody>
+    <tr><td class="group">Fecha</td><td class="group">Pelis alquiladas</td><td class="group">&nbsp;</td>
+    <td class="group">Dinerillo</td><td class="group">&nbsp;</td></tr>
+    <% for diario in @info.diarios %>
+      <tr class="<%= cycle 'par', 'impar' %>">
+        <td><%= fecha diario.fecha %></td>
+        <td><%= diario.item_count %></td>
+        <td><div class="bar movies" style="width: <%= diario.item_count * 0.1 %>em;">&nbsp;</div></td>
+        <td><%= precio diario.total_pasta %>€</td>
+        <td><div class="bar money" style="width: <%= diario.total_pasta * 0.005 %>em;">&nbsp;</div></td>
+      </tr>
+    <% end -%>
+  </tbody>
+</table>

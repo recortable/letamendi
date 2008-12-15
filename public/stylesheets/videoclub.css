@@ -8,7 +8,7 @@ h1, h2 {margin-top: 1em; font-family: serif; border-bottom: 1px solid #efefef; l
 
 h1 {font-size: 200%;}
 h2 {font-size: 150%; margin-top: 2em;}
-
+h3 {font-size: 120%; margin: 1em 0 0.5em 0;}
 
 div.actions { width: 100%; overflow: hidden; padding: 0.5em 0;}
 
@@ -84,6 +84,7 @@ tr.pasta.pago {border-left-color: #00ECFF;}
 #description {width: 30em;}
 #price {width: 5em;}
 
+
 .formulario {margin-bottom: 6em; margin-top: 4em;}
 form p {width: 100%; overflow: hidden; margin: 0.5em 0 0 0;}
 form p label {display: block; width: 20%; float: left; margin-right: 0.5em; margin-top: 0.2em;
@@ -91,3 +92,8 @@ form p label {display: block; width: 20%; float: left; margin-right: 0.5em; marg
 form p input[type=text] {border-bottom: 1px solid black; padding: 0; border-top: 0; border-left: 0; border-right: 0;
     width: 70%;}
 .small_fields input[type=text] { width: 30%;}
+
+
+.bar {height: 1em; background-color: orange;}
+.money {background-color: #008000;}
+.movies {background-color: #FF7A0F;}

@@ -134,6 +134,17 @@ class VideoclubController < ApplicationController
     render :action => 'search', :layout => false
   end
 
+  def informe_diario
+    date = params[:date]
+    fecha = Time.utc(date[:year], date[:month], date[:day])
+    @info = Informe.new(fecha.to_db)
+  end
+
+  def informe_mensual
+    @info = InformeMensual.new(params[:date][:month], params[:date][:year])
+  end
+
+
   private
   def redirect_to_member(member)
     redirect_to :action => 'socio', :id => member.number
@@ -142,5 +153,6 @@ class VideoclubController < ApplicationController
   def redirect_to_movie(movie)
     redirect_to :action => 'peli', :id => movie.number
   end
+
 
 end
