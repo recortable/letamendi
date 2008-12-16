@@ -2,4 +2,6 @@ nbproject
 tmp
 log
 config/database.yml
+.loadpath
+.project
 

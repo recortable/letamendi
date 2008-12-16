@@ -38,15 +38,14 @@ class Rent < ActiveRecord::Base
   
   def self.find_all_rented_on(day) 
     today, tomorrow = surround_days(day)
-    rents = Rent.find(:all, :conditions => 
+    Rent.find(:all, :conditions => 
         ["begin_date > ? AND begin_date < ?",
         today, tomorrow])
   end
   
   def self.find_all_delayed_on(day)
     today, tomorrow = surround_days(day)
-    rents = Rent.find(:all, :conditions =>
-        ["closed = ? AND end_date < ?", false, today],
+    Rent.find(:all, :conditions => ["closed = ? AND end_date < ?", false, today],
       :order => 'begin_date DESC')
   end  
 
